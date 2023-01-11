@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/advanced_ex_4.dir/Command.cpp.o"
+  "CMakeFiles/advanced_ex_4.dir/Command.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o"
   "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/File.cpp.o"

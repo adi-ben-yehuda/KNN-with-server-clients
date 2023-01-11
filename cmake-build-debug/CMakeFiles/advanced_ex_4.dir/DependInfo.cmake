@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Command.cpp" "CMakeFiles/advanced_ex_4.dir/Command.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Command.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Distance.cpp" "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/File.cpp" "CMakeFiles/advanced_ex_4.dir/File.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/File.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/MaxHeap.cpp" "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o.d"

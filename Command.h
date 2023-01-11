@@ -6,9 +6,9 @@
 using namespace std;
 
 class Command {
-private:
-    string description;
 
+protected:
+    string description;
 public:
     virtual void execute();
 };

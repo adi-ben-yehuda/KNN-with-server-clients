@@ -6,6 +6,8 @@
 
 
 #include <iostream>
+#include "Command.h"
+
 using namespace std;
 
 class Setting : public Command {
@@ -20,6 +22,7 @@ public:
     int getK();
     void setMetric(string dist);
     string getMetric();
+    void execute();
 
 
 

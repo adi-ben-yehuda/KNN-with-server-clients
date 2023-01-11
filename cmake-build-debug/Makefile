@@ -129,6 +129,30 @@ advanced_ex_4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/build
 .PHONY : advanced_ex_4/fast
 
+Command.o: Command.cpp.o
+.PHONY : Command.o
+
+# target to build an object file
+Command.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Command.cpp.o
+.PHONY : Command.cpp.o
+
+Command.i: Command.cpp.i
+.PHONY : Command.i
+
+# target to preprocess a source file
+Command.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Command.cpp.i
+.PHONY : Command.cpp.i
+
+Command.s: Command.cpp.s
+.PHONY : Command.s
+
+# target to generate assembly for a file
+Command.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Command.cpp.s
+.PHONY : Command.cpp.s
+
 Distance.o: Distance.cpp.o
 .PHONY : Distance.o
 
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... advanced_ex_4"
+	@echo "... Command.o"
+	@echo "... Command.i"
+	@echo "... Command.s"
 	@echo "... Distance.o"
 	@echo "... Distance.i"
 	@echo "... Distance.s"
