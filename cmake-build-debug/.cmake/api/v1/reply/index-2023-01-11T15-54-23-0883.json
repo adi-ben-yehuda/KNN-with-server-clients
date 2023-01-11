@@ -4,14 +4,14 @@
 		"generator" : 
 		{
 			"multiConfig" : false,
-			"name" : "Ninja"
+			"name" : "Unix Makefiles"
 		},
 		"paths" : 
 		{
-			"cmake" : "/home/adi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/bin/cmake/linux/bin/cmake",
-			"cpack" : "/home/adi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/bin/cmake/linux/bin/cpack",
-			"ctest" : "/home/adi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/bin/cmake/linux/bin/ctest",
-			"root" : "/home/adi/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/bin/cmake/linux/share/cmake-3.24"
+			"cmake" : "/home/shahar/clion-2022.3/bin/cmake/linux/bin/cmake",
+			"cpack" : "/home/shahar/clion-2022.3/bin/cmake/linux/bin/cpack",
+			"ctest" : "/home/shahar/clion-2022.3/bin/cmake/linux/bin/ctest",
+			"root" : "/home/shahar/clion-2022.3/bin/cmake/linux/share/cmake-3.24"
 		},
 		"version" : 
 		{
@@ -26,7 +26,7 @@
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-3df03349c2e4de585600.json",
+			"jsonFile" : "codemodel-v2-8afae31b3076962146a9.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-923c055df324c1691875.json",
+			"jsonFile" : "cache-v2-cbd1f54fbb7274ce91d2.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cmakeFiles-v1-ec99392f3e3a43520462.json",
+			"jsonFile" : "cmakeFiles-v1-1711498d96acc7d1d9c0.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -66,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-923c055df324c1691875.json",
+			"jsonFile" : "cache-v2-cbd1f54fbb7274ce91d2.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -76,7 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-			"jsonFile" : "cmakeFiles-v1-ec99392f3e3a43520462.json",
+			"jsonFile" : "cmakeFiles-v1-1711498d96acc7d1d9c0.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -86,7 +86,7 @@
 		},
 		"codemodel-v2" : 
 		{
-			"jsonFile" : "codemodel-v2-3df03349c2e4de585600.json",
+			"jsonFile" : "codemodel-v2-8afae31b3076962146a9.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
