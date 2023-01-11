@@ -57,10 +57,10 @@ RM = /home/shahar/clion-2022.3/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shahar/Documents/advencd1/advanced_ex_3
+CMAKE_SOURCE_DIR = /home/shahar/Documents/advencd1/ex4/advanced_ex_4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shahar/Documents/advencd1/advanced_ex_3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/shahar/Documents/advencd1/ex4/advanced_ex_4/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shahar/Documents/advencd1/advanced_ex_3/cmake-build-debug/CMakeFiles /home/shahar/Documents/advencd1/advanced_ex_3/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shahar/Documents/advencd1/ex4/advanced_ex_4/cmake-build-debug/CMakeFiles /home/shahar/Documents/advencd1/ex4/advanced_ex_4/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shahar/Documents/advencd1/advanced_ex_3/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shahar/Documents/advencd1/ex4/advanced_ex_4/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named advanced_ex_3
+# Target rules for targets named advanced_ex_4
 
 # Build rule for target.
-advanced_ex_3: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 advanced_ex_3
-.PHONY : advanced_ex_3
+advanced_ex_4: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 advanced_ex_4
+.PHONY : advanced_ex_4
 
 # fast build rule for target.
-advanced_ex_3/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/build
-.PHONY : advanced_ex_3/fast
+advanced_ex_4/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/build
+.PHONY : advanced_ex_4/fast
 
 Distance.o: Distance.cpp.o
 .PHONY : Distance.o
 
 # target to build an object file
 Distance.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/Distance.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Distance.cpp.o
 .PHONY : Distance.cpp.o
 
 Distance.i: Distance.cpp.i
@@ -142,7 +142,7 @@ Distance.i: Distance.cpp.i
 
 # target to preprocess a source file
 Distance.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/Distance.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Distance.cpp.i
 .PHONY : Distance.cpp.i
 
 Distance.s: Distance.cpp.s
@@ -150,7 +150,7 @@ Distance.s: Distance.cpp.s
 
 # target to generate assembly for a file
 Distance.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/Distance.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Distance.cpp.s
 .PHONY : Distance.cpp.s
 
 File.o: File.cpp.o
@@ -158,7 +158,7 @@ File.o: File.cpp.o
 
 # target to build an object file
 File.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/File.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/File.cpp.o
 .PHONY : File.cpp.o
 
 File.i: File.cpp.i
@@ -166,7 +166,7 @@ File.i: File.cpp.i
 
 # target to preprocess a source file
 File.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/File.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/File.cpp.i
 .PHONY : File.cpp.i
 
 File.s: File.cpp.s
@@ -174,7 +174,7 @@ File.s: File.cpp.s
 
 # target to generate assembly for a file
 File.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/File.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/File.cpp.s
 .PHONY : File.cpp.s
 
 MaxHeap.o: MaxHeap.cpp.o
@@ -182,7 +182,7 @@ MaxHeap.o: MaxHeap.cpp.o
 
 # target to build an object file
 MaxHeap.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/MaxHeap.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o
 .PHONY : MaxHeap.cpp.o
 
 MaxHeap.i: MaxHeap.cpp.i
@@ -190,7 +190,7 @@ MaxHeap.i: MaxHeap.cpp.i
 
 # target to preprocess a source file
 MaxHeap.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/MaxHeap.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.i
 .PHONY : MaxHeap.cpp.i
 
 MaxHeap.s: MaxHeap.cpp.s
@@ -198,32 +198,56 @@ MaxHeap.s: MaxHeap.cpp.s
 
 # target to generate assembly for a file
 MaxHeap.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/MaxHeap.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.s
 .PHONY : MaxHeap.cpp.s
 
-client.o: client.cpp.o
-.PHONY : client.o
+Setting.o: Setting.cpp.o
+.PHONY : Setting.o
 
 # target to build an object file
-client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/client.cpp.o
-.PHONY : client.cpp.o
+Setting.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.o
+.PHONY : Setting.cpp.o
 
-client.i: client.cpp.i
-.PHONY : client.i
+Setting.i: Setting.cpp.i
+.PHONY : Setting.i
 
 # target to preprocess a source file
-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/client.cpp.i
-.PHONY : client.cpp.i
+Setting.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.i
+.PHONY : Setting.cpp.i
 
-client.s: client.cpp.s
-.PHONY : client.s
+Setting.s: Setting.cpp.s
+.PHONY : Setting.s
 
 # target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_3.dir/build.make CMakeFiles/advanced_ex_3.dir/client.cpp.s
-.PHONY : client.cpp.s
+Setting.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.s
+.PHONY : Setting.cpp.s
+
+server.o: server.cpp.o
+.PHONY : server.o
+
+# target to build an object file
+server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.o
+.PHONY : server.cpp.o
+
+server.i: server.cpp.i
+.PHONY : server.i
+
+# target to preprocess a source file
+server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.i
+.PHONY : server.cpp.i
+
+server.s: server.cpp.s
+.PHONY : server.s
+
+# target to generate assembly for a file
+server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.s
+.PHONY : server.cpp.s
 
 # Help Target
 help:
@@ -233,7 +257,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... advanced_ex_3"
+	@echo "... advanced_ex_4"
 	@echo "... Distance.o"
 	@echo "... Distance.i"
 	@echo "... Distance.s"
@@ -243,9 +267,12 @@ help:
 	@echo "... MaxHeap.o"
 	@echo "... MaxHeap.i"
 	@echo "... MaxHeap.s"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
+	@echo "... Setting.o"
+	@echo "... Setting.i"
+	@echo "... Setting.s"
+	@echo "... server.o"
+	@echo "... server.i"
+	@echo "... server.s"
 .PHONY : help
 
 

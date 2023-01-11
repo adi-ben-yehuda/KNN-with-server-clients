@@ -12,4 +12,4 @@ add_executable(advanced_ex_4
         File.h
         File.cpp
         MaxHeap.cpp
-        MaxHeap.h)
+        MaxHeap.h Setting.cpp Setting.h)
