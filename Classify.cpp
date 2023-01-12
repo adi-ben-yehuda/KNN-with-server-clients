@@ -8,7 +8,7 @@ Classify::Classify() {
     this->pathTrain = "";
     this->pathTest = "";
 
-    description = "classify data";
+    description = "3. classify data";
 }
 
 // Setter for K.
