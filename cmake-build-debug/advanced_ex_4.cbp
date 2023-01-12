@@ -108,6 +108,12 @@
 		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/MaxHeap.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Results.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Results.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Setting.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
