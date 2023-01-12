@@ -11,7 +11,13 @@
 
 class Results : public Command {
 private:
-    map<int, string> classifications;
+    map<int, string> classifications; // key = line number. value = classification.
+public:
+    Results();
+    void execute();
+    void setMap(map<int, string> mapClassify);
+    string getDescription();
+    ~Results();
 };
 
 
