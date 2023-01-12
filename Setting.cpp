@@ -8,7 +8,7 @@ using namespace std;
 Setting:: Setting() {
     k = 5;
     metric = "AUC";
-    description =  "algorithm settings";
+    description =  "2. algorithm settings";
 }
 
 // Setter for K.

@@ -249,6 +249,30 @@ Setting.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.s
 .PHONY : Setting.cpp.s
 
+UploadFile.o: UploadFile.cpp.o
+.PHONY : UploadFile.o
+
+# target to build an object file
+UploadFile.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o
+.PHONY : UploadFile.cpp.o
+
+UploadFile.i: UploadFile.cpp.i
+.PHONY : UploadFile.i
+
+# target to preprocess a source file
+UploadFile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.i
+.PHONY : UploadFile.cpp.i
+
+UploadFile.s: UploadFile.cpp.s
+.PHONY : UploadFile.s
+
+# target to generate assembly for a file
+UploadFile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.s
+.PHONY : UploadFile.cpp.s
+
 server.o: server.cpp.o
 .PHONY : server.o
 
@@ -297,6 +321,9 @@ help:
 	@echo "... Setting.o"
 	@echo "... Setting.i"
 	@echo "... Setting.s"
+	@echo "... UploadFile.o"
+	@echo "... UploadFile.i"
+	@echo "... UploadFile.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
