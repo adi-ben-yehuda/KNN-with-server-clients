@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/advanced_ex_4.dir/Distance.cpp.o CMakeFiles/advanced_ex_4.dir/server.cpp.o CMakeFiles/advanced_ex_4.dir/File.cpp.o CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o CMakeFiles/advanced_ex_4.dir/Setting.cpp.o CMakeFiles/advanced_ex_4.dir/Command.cpp.o CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o CMakeFiles/advanced_ex_4.dir/Results.cpp.o -o advanced_ex_4

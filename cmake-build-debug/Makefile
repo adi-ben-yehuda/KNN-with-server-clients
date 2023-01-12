@@ -225,6 +225,30 @@ MaxHeap.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.s
 .PHONY : MaxHeap.cpp.s
 
+Results.o: Results.cpp.o
+.PHONY : Results.o
+
+# target to build an object file
+Results.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.o
+.PHONY : Results.cpp.o
+
+Results.i: Results.cpp.i
+.PHONY : Results.i
+
+# target to preprocess a source file
+Results.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.i
+.PHONY : Results.cpp.i
+
+Results.s: Results.cpp.s
+.PHONY : Results.s
+
+# target to generate assembly for a file
+Results.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.s
+.PHONY : Results.cpp.s
+
 Setting.o: Setting.cpp.o
 .PHONY : Setting.o
 
@@ -248,6 +272,30 @@ Setting.s: Setting.cpp.s
 Setting.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.s
 .PHONY : Setting.cpp.s
+
+UploadFile.o: UploadFile.cpp.o
+.PHONY : UploadFile.o
+
+# target to build an object file
+UploadFile.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o
+.PHONY : UploadFile.cpp.o
+
+UploadFile.i: UploadFile.cpp.i
+.PHONY : UploadFile.i
+
+# target to preprocess a source file
+UploadFile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.i
+.PHONY : UploadFile.cpp.i
+
+UploadFile.s: UploadFile.cpp.s
+.PHONY : UploadFile.s
+
+# target to generate assembly for a file
+UploadFile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.s
+.PHONY : UploadFile.cpp.s
 
 server.o: server.cpp.o
 .PHONY : server.o
@@ -294,9 +342,15 @@ help:
 	@echo "... MaxHeap.o"
 	@echo "... MaxHeap.i"
 	@echo "... MaxHeap.s"
+	@echo "... Results.o"
+	@echo "... Results.i"
+	@echo "... Results.s"
 	@echo "... Setting.o"
 	@echo "... Setting.i"
 	@echo "... Setting.s"
+	@echo "... UploadFile.o"
+	@echo "... UploadFile.i"
+	@echo "... UploadFile.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
