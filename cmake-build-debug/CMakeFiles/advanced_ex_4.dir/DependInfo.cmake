@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Distance.cpp" "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/File.cpp" "CMakeFiles/advanced_ex_4.dir/File.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/File.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/MaxHeap.cpp" "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o.d"
+  "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Results.cpp" "CMakeFiles/advanced_ex_4.dir/Results.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Results.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Setting.cpp" "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/UploadFile.cpp" "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o.d"
   "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/server.cpp" "CMakeFiles/advanced_ex_4.dir/server.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/server.cpp.o.d"

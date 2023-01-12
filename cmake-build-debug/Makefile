@@ -225,6 +225,30 @@ MaxHeap.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.s
 .PHONY : MaxHeap.cpp.s
 
+Results.o: Results.cpp.o
+.PHONY : Results.o
+
+# target to build an object file
+Results.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.o
+.PHONY : Results.cpp.o
+
+Results.i: Results.cpp.i
+.PHONY : Results.i
+
+# target to preprocess a source file
+Results.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.i
+.PHONY : Results.cpp.i
+
+Results.s: Results.cpp.s
+.PHONY : Results.s
+
+# target to generate assembly for a file
+Results.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Results.cpp.s
+.PHONY : Results.cpp.s
+
 Setting.o: Setting.cpp.o
 .PHONY : Setting.o
 
@@ -318,6 +342,9 @@ help:
 	@echo "... MaxHeap.o"
 	@echo "... MaxHeap.i"
 	@echo "... MaxHeap.s"
+	@echo "... Results.o"
+	@echo "... Results.i"
+	@echo "... Results.s"
 	@echo "... Setting.o"
 	@echo "... Setting.i"
 	@echo "... Setting.s"

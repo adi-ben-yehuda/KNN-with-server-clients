@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/advanced_ex_4.dir/File.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o"
   "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o.d"
+  "CMakeFiles/advanced_ex_4.dir/Results.cpp.o"
+  "CMakeFiles/advanced_ex_4.dir/Results.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o"
   "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o"
