@@ -70,7 +70,7 @@ LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/
 COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_578a6.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578a6.dir/CMakeCCompilerABI.c.'
 Linking C executable cmTC_578a6
 /home/shahar/clion-2022.3/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_578a6.dir/link.txt --verbose=1
-/usr/bin/cc  -v CMakeFiles/cmTC_578a6.dir/CMakeCCompilerABI.c.o -o cmTC_578a6 
+/usr/bin/cc  -v CMakeFiles/cmTC_578a6.dir/CMakeCCompilerABI.c.o -o cmTC_578a6
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
@@ -280,7 +280,7 @@ LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/
 COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_7e8e6.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e8e6.dir/CMakeCXXCompilerABI.cpp.'
 Linking CXX executable cmTC_7e8e6
 /home/shahar/clion-2022.3/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7e8e6.dir/link.txt --verbose=1
-/usr/bin/c++  -v CMakeFiles/cmTC_7e8e6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_7e8e6 
+/usr/bin/c++  -v CMakeFiles/cmTC_7e8e6.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_7e8e6
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
