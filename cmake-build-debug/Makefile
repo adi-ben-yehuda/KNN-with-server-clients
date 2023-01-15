@@ -129,6 +129,30 @@ advanced_ex_4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/build
 .PHONY : advanced_ex_4/fast
 
+Classify.o: Classify.cpp.o
+.PHONY : Classify.o
+
+# target to build an object file
+Classify.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Classify.cpp.o
+.PHONY : Classify.cpp.o
+
+Classify.i: Classify.cpp.i
+.PHONY : Classify.i
+
+# target to preprocess a source file
+Classify.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Classify.cpp.i
+.PHONY : Classify.cpp.i
+
+Classify.s: Classify.cpp.s
+.PHONY : Classify.s
+
+# target to generate assembly for a file
+Classify.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Classify.cpp.s
+.PHONY : Classify.cpp.s
+
 Command.o: Command.cpp.o
 .PHONY : Command.o
 
@@ -330,6 +354,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... advanced_ex_4"
+	@echo "... Classify.o"
+	@echo "... Classify.i"
+	@echo "... Classify.s"
 	@echo "... Command.o"
 	@echo "... Command.i"
 	@echo "... Command.s"
