@@ -1,7 +1,3 @@
-//
-// Created by shahar on 1/12/23.
-//
-
 #ifndef ADVANCED_EX_4_UPLOADFILE_H
 #define ADVANCED_EX_4_UPLOADFILE_H
 

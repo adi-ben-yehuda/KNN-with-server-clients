@@ -1,8 +1,5 @@
-//
-// Created by shahar on 1/12/23.
-//
-
 #include "UploadFile.h"
+
 using namespace std;
 
 UploadFile:: UploadFile() {
