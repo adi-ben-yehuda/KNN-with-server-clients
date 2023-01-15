@@ -102,6 +102,12 @@
 		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Distance.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Download.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/Download.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/ex4/advanced_ex_4/File.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>

@@ -3,6 +3,7 @@
 #include "Distance.h"
 #include <iostream>
 #include <vector>
+#include <netinet/in.h>
 
 using namespace std;
 
@@ -26,6 +27,35 @@ bool isFileExist(string fileName) {
     }
     return false;
 }
+
+ofstream createFile(string fileName) {
+    ofstream File(fileName + ".csv");
+    return File;
+}
+
+
+void sendDataFile(int sock, string path) {
+    string temp = "";
+    ifstream file;
+    file.open(path);
+
+    // Read the Data from the file as double Vector
+    while (getline(file, temp)) {
+        temp += "\n";
+        // Send the data that get from the console, to the server.
+        int sent_bytes = send(sock, temp.c_str(), temp.length(), 0);
+        if (sent_bytes < 0) {
+            cout << "Sending failed" << endl;
+        }
+    }
+    int sent_bytes = send(sock, "f", 1, 0);
+    if (sent_bytes < 0) {
+        cout << "Sending failed" << endl;
+    }
+    file.close();
+}
+
+
 
 /* The function gets file name, vector, distance type and k.
     Read every row from the file. If the row is valid, save it in a vector.

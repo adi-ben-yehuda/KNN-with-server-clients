@@ -8,12 +8,14 @@ class UploadFile : public Command {
 private:
     string pathTrain;
     string pathTest;
+    int sock;
 
 public:
     UploadFile();
 
     void setTrain(string train);
     void setTest(string test);
+    void setSocket(int sock);
     string getTrain();
     string getTest();
     string getDescription();

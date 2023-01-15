@@ -21,6 +21,7 @@ public:
     void setK(int x);
     int getK();
     void setMetric(string dist);
+    void setSocket(int sock);
     string getMetric();
     string getDescription();
     void execute();

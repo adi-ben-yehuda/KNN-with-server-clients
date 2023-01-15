@@ -23,6 +23,76 @@ int getPort(char **argv) {
     return port;
 }
 
+
+
+
+void option1(int sock) {
+    string pathTrain = "", pathTest = "";
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
+
+    // Receive messageTrain from the server.
+    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
+
+    // Get the path of train file from the user.
+    cin >> pathTrain;
+    // If the pathTrain is empty or invalid path.
+    if (pathTrain == "" || !isFileExist(pathTrain)) {
+        cout << "invalid input" << endl;
+        return;
+    }
+    sendDataFile(sock, pathTrain);
+
+    memset(buffer, ' ', 4096);
+    // Get "upload complete" from server.
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer << endl;
+    }
+
+    memset(buffer, ' ', 4096);
+    // Receive messageTrain from the server.
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer << endl;
+    }
+
+    // Get the path of test file from the user.
+    getline(cin, pathTest);
+    // If the pathTest is empty or invalid path.
+    if (pathTest == "" || !isFileExist(pathTest)) {
+        cout << "invalid input" << endl;
+        return;
+    }
+    sendDataFile(sock, pathTest);
+
+    memset(buffer, ' ', 4096);
+    // Get "upload complete" from server.
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer << endl;
+    }
+}
+
 int main(int argc, char **argv) {
     // If the arguments are empty. or the port is invalid.
     if (argc != 3 || getPort(argv) == 0) {
@@ -35,9 +105,11 @@ int main(int argc, char **argv) {
 
     vector<double> p, q;
     bool isValid = true, isK = false, isDistance = false, isVector = false;
-    string input = "", arg = "", data = "";
+    string input = "", arg = "", data = "", option = "";
     double numCheck = 0.0, validDistance = 0.0;
-    int countErrors = 0;;
+    int countErrors = 0;
+
+
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     // Check if the creation of the socket succeeded.
@@ -60,6 +132,33 @@ int main(int argc, char **argv) {
 
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
+
+        // Menu
+        char buffer[4096] = " ";
+        int expected_data_len = sizeof(buffer);
+        int read_bytes = recv(sock, buffer, expected_data_len, 0);
+        if (read_bytes == 0) {
+            //  connection is closed
+            close(sock);
+        } else if (read_bytes < 0) {
+            cout << "Acceptance failed" << endl;
+        } else {
+            cout << buffer;
+        }
+
+
+        cin >> option;
+        // Send the data that get from the console, to the server.
+        int sent_bytes = send(sock, option.c_str(), option.length(), 0);
+        if (sent_bytes < 0) {
+            cout << "Sending failed" << endl;
+        }
+        if (option == "1"){
+            option1(sock);
+
+
+        }
+
 //        p.clear();
 //        /* Get input from the user as a string that is separated by spaces. */
 //        getline(cin, input);
@@ -151,17 +250,7 @@ int main(int argc, char **argv) {
 //                continue;
 //            }
 
-            char buffer[4096] = " ";
-            int expected_data_len = sizeof(buffer);
-            int read_bytes = recv(sock, buffer, expected_data_len, 0);
-            if (read_bytes == 0) {
-               //  connection is closed
-                close(sock);
-            } else if (read_bytes < 0) {
-                cout << "Acceptance failed" << endl;
-            } else {
-                cout << buffer << endl;
-            }
+
         }
 
         data = "";

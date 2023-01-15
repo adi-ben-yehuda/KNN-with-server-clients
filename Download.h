@@ -15,11 +15,9 @@ public:
     Download();
 
     string getDescription();
-
     void setClassificationsMap(map<int, string> classifications);
-
+    void setSocket(int sock);
     map<int, string> getClassificationsMap();
-
     void execute();
 
     ~Download();

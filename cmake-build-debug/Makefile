@@ -201,6 +201,30 @@ Distance.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Distance.cpp.s
 .PHONY : Distance.cpp.s
 
+Download.o: Download.cpp.o
+.PHONY : Download.o
+
+# target to build an object file
+Download.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.o
+.PHONY : Download.cpp.o
+
+Download.i: Download.cpp.i
+.PHONY : Download.i
+
+# target to preprocess a source file
+Download.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.i
+.PHONY : Download.cpp.i
+
+Download.s: Download.cpp.s
+.PHONY : Download.s
+
+# target to generate assembly for a file
+Download.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.s
+.PHONY : Download.cpp.s
+
 File.o: File.cpp.o
 .PHONY : File.o
 
@@ -363,6 +387,9 @@ help:
 	@echo "... Distance.o"
 	@echo "... Distance.i"
 	@echo "... Distance.s"
+	@echo "... Download.o"
+	@echo "... Download.i"
+	@echo "... Download.s"
 	@echo "... File.o"
 	@echo "... File.i"
 	@echo "... File.s"
