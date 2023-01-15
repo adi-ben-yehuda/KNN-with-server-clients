@@ -1,8 +1,5 @@
-//
-// Created by shahar on 1/11/23.
-//
-
 #include "Setting.h"
+
 using namespace std;
 
 Setting:: Setting() {
