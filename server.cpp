@@ -8,6 +8,12 @@
 #include <cmath>
 #include <map>
 #include "File.h"
+#include "Command.h"
+#include "UploadFile.h"
+#include "Results.h"
+#include "Classify.h"
+#include "Setting.h"
+#include "Download.h"
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -93,6 +99,20 @@ bool argsIsValid(int argc, char **argv) {
 }
 
 int main(int argc, char **argv) {
+
+    Command options[5];
+
+    options[0] = UploadFile();
+    options[1] = Setting();
+    options[2] = Classify();
+    options[3] = Results();
+    options[4] = Download();
+
+
+
+
+
+
     // Check if the args are valid, if not we get out of the program.
     if (!argsIsValid(argc, argv)) {
         cout << "invalid arguments" << endl;
