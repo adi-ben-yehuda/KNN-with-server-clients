@@ -14,3 +14,6 @@ void Results::execute(){}
 string Results::getDescription() {
     return description;
 }
+
+/* Destructor. */
+Results::~Results() {}

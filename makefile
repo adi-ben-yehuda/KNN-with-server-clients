@@ -6,11 +6,11 @@ CC = g++
 all: server.out client.out
 
 # Write Makefile rules to compile the client and server program,
-server.out: server.o File.o MaxHeap.o Distance.o
+server.out: server.o File.o MaxHeap.o Distance.o Command.o Download.o UploadFile.o Setting.o Results.o Classify.o 
 	$(CC) $(LDFLAGS) $^ -o $@ -std=c++11
 client.out: client.o File.o MaxHeap.o Distance.o
 	$(CC) $(LDFLAGS) $^ -o $@ -std=c++11
-server.o: server.cpp File.h MaxHeap.h Distance.h
+server.o: server.cpp File.h MaxHeap.h Distance.h Command.h Download.h UploadFile.h Setting.h Results.h Classify.h 
 	$(CC) -c $(CFLAGS) $< -o $@
 client.o: client.cpp File.h MaxHeap.h Distance.h
 	$(CC) -c $(CFLAGS) $< -o $@

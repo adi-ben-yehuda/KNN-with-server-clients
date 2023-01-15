@@ -12,4 +12,16 @@ add_executable(advanced_ex_4
         File.h
         File.cpp
         MaxHeap.cpp
-        MaxHeap.h Setting.cpp Setting.h Command.cpp UploadFile.cpp UploadFile.h Results.cpp Results.h Classify.cpp)
+        MaxHeap.h
+        Setting.cpp
+        Setting.h
+        Command.cpp
+        Command.h
+        UploadFile.cpp
+        UploadFile.h
+        Results.cpp
+        Results.h
+        Classify.cpp
+        Classify.h
+        Download.cpp
+        Download.h)

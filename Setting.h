@@ -22,6 +22,7 @@ public:
     int getK();
     void setMetric(string dist);
     string getMetric();
+    string getDescription();
     void execute();
 
 

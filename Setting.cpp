@@ -28,4 +28,12 @@ string Setting::getMetric() {
     return metric;
 }
 
+string Setting::getDescription() {
+    return description;
+}
+
+
 void Setting::execute(){}
+
+/* Destructor. */
+Setting::~Setting() {}

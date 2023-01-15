@@ -19,3 +19,6 @@ map<int, string> Download::getClassificationsMap() {
 }
 
 void Download::execute() {}
+
+/* Destructor. */
+Download::~Download() {}

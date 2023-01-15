@@ -16,6 +16,7 @@ public:
     void setTest(string test);
     string getTrain();
     string getTest();
+    string getDescription();
     void execute();
     ~UploadFile();
 

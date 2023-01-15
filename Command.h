@@ -10,7 +10,13 @@ class Command {
 protected:
     string description;
 public:
-    virtual void execute();
+    Command() {}
+
+    virtual void execute() {}
+
+    virtual string getDescription() { return description; }
+
+    virtual ~Command() {}
 };
 
 #endif //ADVANCED_EX_4_COMMAND_H
