@@ -51,4 +51,11 @@ string Classify::getPathTest() {
     return pathTest;
 }
 
+string Classify::getDescription() {
+    return description;
+}
+
 void Classify::execute() {}
+
+/* Destructor. */
+Classify::~Classify() {}

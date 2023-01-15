@@ -24,6 +24,7 @@ public:
     string getPathTrain();
     void setPathTest(string pathTest);
     string getPathTest();
+    string getDescription();
     void execute();
 
     ~Classify();

@@ -28,4 +28,11 @@ string UploadFile::getTest() {
     return pathTest;
 }
 
+string UploadFile::getDescription() {
+    return description;
+}
+
 void UploadFile::execute(){}
+
+/* Destructor. */
+UploadFile::~UploadFile() {}
