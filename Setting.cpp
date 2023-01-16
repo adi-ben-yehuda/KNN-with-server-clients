@@ -3,52 +3,35 @@
 #include <string.h>
 #include "File.h"
 #include "Distance.h"
+#include "Data.h"
 
 using namespace std;
 
+// The default values.
+int Data::k = 5;
+string Data::metric = "AUC";
+
 Setting::Setting() {
-    k = 5;
-    metric = "AUC";
     description = "2. algorithm settings";
-}
-
-// Setter for K.
-void Setting::setK(int x) {
-    k = x;
-}
-
-// Getter for K.
-int Setting::getK() {
-    return k;
-}
-
-// Setter for metric.
-void Setting::setMetric(string dist) {
-    metric = dist;
-}
-
-// Setter for clientSocket.
-void Setting::setSocket(int socket) {
-    sock = socket;
-}
-
-// Getter for metric.
-string Setting::getMetric() {
-    return metric;
 }
 
 string Setting::getDescription() {
     return description;
 }
 
+// Setter for clientSocket.
+void Setting::setSocket(int socket){
+    sock = socket;
+}
+
 
 void Setting::execute() {
-    string message = "The current KNN parameters are: K = " + to_string(k) + ", distance metric = " + metric + "\n";
-    string kInvalid = "invalid value for K\n", metricInvalid = "invalid value for metric\n", m = "invalid input\n";
-    int sent_bytes = 0, readBytes = 0, read_bytes,  count = 0, tempK;
+    string message = "The current KNN parameters are: K = " + to_string(Data::k)
+                     + ", distance metric = " + Data::metric + "\n", kInvalid = "invalid value for K\n",
+            metricInvalid = "invalid value for metric\n", m = "invalid input\n", tempMetric;
     char buffer[4096] = " ", *token = NULL;
+    int sent_bytes, read_bytes, count = 0, tempK;
     int expected_data_len = sizeof(buffer);
-    string tempMetric;
     bool kValid = true, mValid = true;
 
     // Send message to the client.
@@ -110,8 +93,8 @@ void Setting::execute() {
         }
 
         if (kValid && mValid) {
-            k = tempK;
-            metric = tempMetric;
+            Data::k = tempK;
+            Data::metric = tempMetric;
         }
     }
 }

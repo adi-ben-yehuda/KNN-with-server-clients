@@ -5,46 +5,24 @@
 
 using namespace std;
 
-UploadFile:: UploadFile() {
-    pathTrain = "";
-    pathTest = "";
+UploadFile::UploadFile() {
     description = "1. upload an unclassified csv data file";
 }
 
-// Setter for pathTrain.
-void UploadFile::setTrain(string train){
-    pathTrain = train;
-}
-
-// Setter for pathTest.
-void UploadFile::setTest(string test){
-    pathTest = test;
-}
-
 // Setter for clientSocket.
-void UploadFile::setSocket(int socket){
+void UploadFile::setSocket(int socket) {
     sock = socket;
-}
-
-// Getter for pathTrain.
-string UploadFile::getTrain() {
-    return pathTrain;
-}
-
-// Getter for pathTest.
-string UploadFile::getTest() {
-    return pathTest;
 }
 
 string UploadFile::getDescription() {
     return description;
 }
 
-void UploadFile::execute(){
+void UploadFile::execute() {
     ofstream File;
-    int sent_bytes = 0, readBytes = 0;
+    int sent_bytes, readBytes;
     string messageTrain = "Please upload your local train CSV file.\n",
-    messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.\n";
+            messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.\n";
     char buffer[4096] = " ";
     int expectedDataLen = sizeof(buffer);
     bool close = false;
@@ -121,6 +99,8 @@ void UploadFile::execute(){
         perror("error sending to client");
     }
 }
+
+
 
 /* Destructor. */
 UploadFile::~UploadFile() {}

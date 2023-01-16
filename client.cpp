@@ -119,6 +119,21 @@ void option2(int sock) {
     } else {
         cout << buffer;
     }
+}
+
+void option3(int sock) {
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
+
+    // Receive message from the server: complete or upload data
+    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
 
 }
 
@@ -181,6 +196,8 @@ int main(int argc, char **argv) {
             option1(sock);
         } else if (option == "2") {
             option2(sock);
+        } else if (option == "3") {
+            option3(sock);
         }
 
 //        p.clear();

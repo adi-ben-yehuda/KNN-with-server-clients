@@ -11,7 +11,6 @@ private:
 public:
     Results();
     void execute();
-    void setMap(map<int, string> mapClassify);
     void setSocket(int sock);
     string getDescription();
     ~Results();

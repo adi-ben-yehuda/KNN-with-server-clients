@@ -202,6 +202,8 @@ int main(int argc, char **argv) {
             if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
                 i = stoi(&buffer[0]) - 1;
                 options[i]->setSocket(clientSocket);
+
+
                 options[i]->execute();
             } else { // Print invalid input.
                 sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
