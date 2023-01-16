@@ -14,6 +14,7 @@
 #include "Classify.h"
 #include "Setting.h"
 #include "Download.h"
+#include "Data.h"
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -118,6 +119,13 @@ void sendMenu(Command *options[5], int clientSocket) {
         perror("error sending to client");
     }
 }
+
+
+// The default values.
+int Data::k = 5;
+string Data::metric = "AUC";
+bool Data::isUpload = false;
+bool Data::isClassify = false;
 
 
 int main(int argc, char **argv) {

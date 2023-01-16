@@ -7,10 +7,6 @@
 
 using namespace std;
 
-// The default values.
-int Data::k = 5;
-string Data::metric = "AUC";
-
 Setting::Setting() {
     description = "2. algorithm settings";
 }

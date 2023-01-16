@@ -2,6 +2,7 @@
 #include <netinet/in.h>
 #include <cstring>
 #include "File.h"
+#include "Data.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ string UploadFile::getDescription() {
 }
 
 void UploadFile::execute() {
+    Data::isUpload = true;
+
     ofstream File;
     int sent_bytes, readBytes;
     string messageTrain = "Please upload your local train CSV file.\n",

@@ -13,7 +13,8 @@ public:
     static string pathTrain;
     static string pathTest;
     static map<int, string> classifications; // key = line number. value = classification.
+    static bool isUpload;
+    static bool isClassify;
 };
-
 
 #endif //ADVANCED_EX_4_DATA_H
