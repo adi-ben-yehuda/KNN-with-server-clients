@@ -14,6 +14,7 @@
 #include "Classify.h"
 #include "Setting.h"
 #include "Download.h"
+#include "Data.h"
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -120,6 +121,13 @@ void sendMenu(Command *options[5], int clientSocket) {
 }
 
 
+// The default values.
+int Data::k = 5;
+string Data::metric = "AUC";
+bool Data::isUpload = false;
+bool Data::isClassify = false;
+
+
 int main(int argc, char **argv) {
 
     // Check if the args are valid, if not we get out of the program.
@@ -202,6 +210,8 @@ int main(int argc, char **argv) {
             if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
                 i = stoi(&buffer[0]) - 1;
                 options[i]->setSocket(clientSocket);
+
+
                 options[i]->execute();
             } else { // Print invalid input.
                 sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);

@@ -13,11 +13,8 @@ private:
 
 public:
     Download();
-
-    string getDescription();
-    void setClassificationsMap(map<int, string> classifications);
     void setSocket(int sock);
-    map<int, string> getClassificationsMap();
+    string getDescription();
     void execute();
 
     ~Download();

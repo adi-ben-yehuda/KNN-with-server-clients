@@ -1,49 +1,10 @@
 #include "Classify.h"
+#include "Data.h"
 
 using namespace std;
 
 Classify::Classify() {
-    this->k = 0;
-    this->metric = "";
-    this->pathTrain = "";
-    this->pathTest = "";
-
     description = "3. classify data";
-}
-
-// Setter for K.
-void Classify::setK(int x) {
-    k = x;
-}
-
-// Getter for K.
-int Classify::getK() {
-    return k;
-}
-
-// Setter for metric.
-void Classify::setMetric(string dist) {
-    metric = dist;
-}
-
-// Getter for metric.
-string Classify::getMetric() {
-    return metric;
-}
-
-// Setter for metric.
-void Classify::setPathTrain(string path) {
-    pathTrain = path;
-}
-
-// Getter for metric.
-string Classify::getPathTrain() {
-    return pathTrain;
-}
-
-// Setter for metric.
-void Classify::setPathTest(string path) {
-    pathTest = path;
 }
 
 // Setter for clientSocket.
@@ -51,16 +12,13 @@ void Classify::setSocket(int socket){
     sock = socket;
 }
 
-// Getter for metric.
-string Classify::getPathTest() {
-    return pathTest;
-}
-
 string Classify::getDescription() {
     return description;
 }
 
-void Classify::execute() {}
+void Classify::execute() {
+    Data::isClassify = true;
+}
 
 /* Destructor. */
 Classify::~Classify() {}
