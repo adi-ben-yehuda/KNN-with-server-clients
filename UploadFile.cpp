@@ -1,5 +1,6 @@
 #include "UploadFile.h"
 #include <netinet/in.h>
+#include <cstring>
 #include "File.h"
 
 using namespace std;
@@ -43,7 +44,7 @@ void UploadFile::execute(){
     ofstream File;
     int sent_bytes = 0, readBytes = 0;
     string messageTrain = "Please upload your local train CSV file.\n",
-    messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.";
+    messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.\n";
     char buffer[4096] = " ";
     int expectedDataLen = sizeof(buffer);
 
@@ -53,36 +54,25 @@ void UploadFile::execute(){
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
+    bool close = false;
     File = createFile("train");
-    // Get all the data.
-
-    while (true) {
+    // Get all the data.s
+    while (!close) {
         int readBytes = recv(sock, buffer, expectedDataLen, 0);
 
         if (readBytes <= 0) {
             perror("error receiving from client");
-        } else if (buffer[0] == 'f' && buffer[1] == '\000') {
-            break;
         } else {
-            File << buffer;
+            for (int i = 0; i < 4096; ++i) {
+                if (buffer[i] != '&') {
+                    File << buffer[i];
+                } else {
+                    close=true;
+                    break;
+                }
+            }
         }
     }
-
-//    do {
-//        // Get data from the clientSocket to buffer.
-//        readBytes = recv(sock, buffer, expectedDataLen, 0);
-//
-//        if (readBytes <= 0) {
-//            perror("error receiving from client");
-//        } else {
-//            if (buffer[0] == 'f') {
-//                break;
-//            }
-//            File << buffer;
-//
-//        }
-//        //&& buffer[1] != '\000'
-//    } while (buffer[0] != 'f');
 
     File.close();
 
@@ -103,19 +93,27 @@ void UploadFile::execute(){
         perror("error sending to client");
     }
 
+
+    memset(buffer, ' ', 4096);
     File = createFile("test");
-    // Get all the data.
-    do {
-        // Get data from the clientSocket to buffer.
-        readBytes = recv(sock, buffer, expectedDataLen, 0);
+    close = false;
+
+    while (!close) {
+        int readBytes = recv(sock, buffer, expectedDataLen, 0);
 
         if (readBytes <= 0) {
             perror("error receiving from client");
         } else {
-            File << buffer << endl;
-
+            for (int i = 0; i < 4096; ++i) {
+                if (buffer[i] != '&') {
+                    File << buffer[i];
+                } else {
+                    close=true;
+                    break;
+                }
+            }
         }
-    } while (buffer[0] != '0' && buffer[1] != '\000');
+    }
 
     File.close();
 

@@ -35,20 +35,20 @@ ofstream createFile(string fileName) {
 
 
 void sendDataFile(int sock, string path) {
-    string temp = "";
+    string temp = "", data = "";
     ifstream file;
     file.open(path);
 
     // Read the Data from the file as double Vector
     while (getline(file, temp)) {
-        temp += "\n";
-        // Send the data that get from the console, to the server.
-        int sent_bytes = send(sock, temp.c_str(), temp.length(), 0);
-        if (sent_bytes < 0) {
-            cout << "Sending failed" << endl;
-        }
+        data += temp + "\n";
     }
-    int sent_bytes = send(sock, "f", 1, 0);
+    // Send the data that get from the console, to the server.
+    int sent_bytes = send(sock, data.c_str(), data.length(), 0);
+    if (sent_bytes < 0) {
+        cout << "Sending failed" << endl;
+    }
+    sent_bytes = send(sock, "&", 1, 0);
     if (sent_bytes < 0) {
         cout << "Sending failed" << endl;
     }

@@ -163,7 +163,8 @@ CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/11/cstring \
+ /usr/include/string.h /usr/include/strings.h \
  /home/shahar/Documents/advencd1/ex4/advanced_ex_4/File.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
