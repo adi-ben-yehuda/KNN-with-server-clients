@@ -11,7 +11,6 @@ private:
 
 public:
     UploadFile(Data data);
-    void setSocket(int sock);
     string getDescription();
     void execute();
     ~UploadFile();

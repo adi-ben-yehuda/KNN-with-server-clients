@@ -11,11 +11,6 @@ string Download::getDescription() {
     return description;
 }
 
-// Setter for clientSocket.
-void Download::setSocket(int socket){
-    sock = socket;
-}
-
 void Download::execute() {}
 
 /* Destructor. */

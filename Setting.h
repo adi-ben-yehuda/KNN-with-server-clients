@@ -14,10 +14,9 @@ private:
     Data data;
 
 public:
-    Setting(Data data;);
+    Setting(Data data);
 
     string getDescription();
-    void setSocket(int sock);
     void execute();
 
     ~Setting();

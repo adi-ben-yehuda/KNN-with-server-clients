@@ -12,8 +12,6 @@ private:
 
 public:
     Classify(Data data);
-
-    void setSocket(int sock);
     string getDescription();
     void execute();
 

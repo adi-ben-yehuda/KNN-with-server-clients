@@ -12,10 +12,5 @@ string Results::getDescription() {
 
 }
 
-// Setter for clientSocket.
-void Results::setSocket(int socket){
-    sock = socket;
-}
-
 /* Destructor. */
 Results::~Results() {}

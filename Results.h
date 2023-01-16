@@ -8,12 +8,10 @@
 
 class Results : public Command {
 private:
-    map<int, string> classifications; // key = line number. value = classification.
     Data data;
 public:
     Results(Data data);
     void execute();
-    void setSocket(int sock);
     string getDescription();
     ~Results();
 };

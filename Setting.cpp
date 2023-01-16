@@ -17,15 +17,10 @@ string Setting::getDescription() {
     return description;
 }
 
-// Setter for clientSocket.
-void Setting::setSocket(int socket){
-    sock = socket;
-}
-
 
 void Setting::execute() {
-    string message = "The current KNN parameters are: K = " + to_string(data.k)
-                     + ", distance metric = " + data.metric + "\n", kInvalid = "invalid value for K\n",
+    string message = "The current KNN parameters are: K = " + to_string(data.getK())
+                     + ", distance metric = " + data.getMetric() + "\n", kInvalid = "invalid value for K\n",
             metricInvalid = "invalid value for metric\n", m = "invalid input\n", tempMetric;
     char buffer[4096] = " ", *token = NULL;
     int sent_bytes, read_bytes, count = 0, tempK;
@@ -33,14 +28,14 @@ void Setting::execute() {
     bool kValid = true, mValid = true;
 
     // Send message to the client.
-    sent_bytes = send(sock, message.c_str(), message.length(), 0);
+    sent_bytes = send(data.getSock(), message.c_str(), message.length(), 0);
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
 
     // Receive the settings from the user.
-    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    read_bytes = recv(data.getSock(), buffer, expected_data_len, 0);
     if (read_bytes <= 0) { //  connection is closed
         perror("error receiving from client");
     }
@@ -56,7 +51,7 @@ void Setting::execute() {
                     tempK = stoi(token);
                 } else {
                     // Send message to the client.
-                    sent_bytes = send(sock, kInvalid.c_str(), kInvalid.length(), 0);
+                    sent_bytes = send(data.getSock(), kInvalid.c_str(), kInvalid.length(), 0);
                     // Check if the sending of the data succeeded.
                     if (sent_bytes < 0) {
                         perror("error sending to client");
@@ -69,7 +64,7 @@ void Setting::execute() {
                     tempMetric = token;
                 } else {
                     // Send message to the client.
-                    sent_bytes = send(sock, metricInvalid.c_str(), metricInvalid.length(), 0);
+                    sent_bytes = send(data.getSock(), metricInvalid.c_str(), metricInvalid.length(), 0);
                     // Check if the sending of the data succeeded.
                     if (sent_bytes < 0) {
                         perror("error sending to client");
@@ -79,7 +74,7 @@ void Setting::execute() {
                 count++;
             } else if (count > 1) {
                 // Send message to the client.
-                sent_bytes = send(sock, m.c_str(), m.length(), 0);
+                sent_bytes = send(data.getSock(), m.c_str(), m.length(), 0);
                 // Check if the sending of the data succeeded.
                 if (sent_bytes < 0) {
                     perror("error sending to client");
@@ -91,8 +86,8 @@ void Setting::execute() {
         }
 
         if (kValid && mValid) {
-            data.k = tempK;
-            data.metric = tempMetric;
+            data.setK(tempK);
+            data.setMetric(tempMetric);
         }
     }
 }

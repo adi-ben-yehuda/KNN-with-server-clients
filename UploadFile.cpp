@@ -11,17 +11,11 @@ UploadFile::UploadFile(Data data) {
     this->data = data;
 }
 
-// Setter for clientSocket.
-void UploadFile::setSocket(int socket) {
-    sock = socket;
-}
-
 string UploadFile::getDescription() {
     return description;
 }
 
 void UploadFile::execute() {
-    data.isUpload = true;
 
     ofstream File;
     int sent_bytes, readBytes;
@@ -32,7 +26,7 @@ void UploadFile::execute() {
     bool close = false;
 
     // Send messageTrain to the client.
-    sent_bytes = send(sock, messageTrain.c_str(), messageTrain.length(), 0);
+    sent_bytes = send(data.getSock(), messageTrain.c_str(), messageTrain.length(), 0);
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
@@ -41,7 +35,7 @@ void UploadFile::execute() {
     File = createFile("train");
     // Get all the data.s
     while (!close) {
-        readBytes = recv(sock, buffer, expectedDataLen, 0);
+        readBytes = recv(data.getSock(), buffer, expectedDataLen, 0);
 
         if (readBytes <= 0) {
             perror("error receiving from client");
@@ -60,14 +54,16 @@ void UploadFile::execute() {
     File.close();
 
     // Send "Upload complete" message to the client.
-    sent_bytes = send(sock, complete.c_str(), complete.length(), 0);
+    sent_bytes = send(data.getSock(), complete.c_str(), complete.length(), 0);
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
 
+    data.setIsTrain(true);
+
     // Send messageTest to the client.
-    sent_bytes = send(sock, messageTest.c_str(), messageTest.length(), 0);
+    sent_bytes = send(data.getSock(), messageTest.c_str(), messageTest.length(), 0);
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
@@ -78,7 +74,7 @@ void UploadFile::execute() {
     close = false;
 
     while (!close) {
-        readBytes = recv(sock, buffer, expectedDataLen, 0);
+        readBytes = recv(data.getSock(), buffer, expectedDataLen, 0);
 
         if (readBytes <= 0) {
             perror("error receiving from client");
@@ -97,11 +93,13 @@ void UploadFile::execute() {
     File.close();
 
     // Send "Upload complete" message to the client.
-    sent_bytes = send(sock, complete.c_str(), complete.length(), 0);
+    sent_bytes = send(data.getSock(), complete.c_str(), complete.length(), 0);
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
+
+    data.setIsTest(true);
 }
 
 

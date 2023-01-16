@@ -10,13 +10,11 @@ using namespace std;
 
 class Download : public Command {
 private:
-    map<int, string> classifications;
     Data data;
 
 public:
     Download(Data data);
 
-    void setSocket(int sock);
     string getDescription();
     void execute();
 
