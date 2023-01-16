@@ -13,6 +13,7 @@ using namespace std;
 class Setting : public Command {
 private:
     int k;
+    int sock;
     string metric;
 
 public:
@@ -21,9 +22,9 @@ public:
     void setK(int x);
     int getK();
     void setMetric(string dist);
-    void setSocket(int sock);
     string getMetric();
     string getDescription();
+    void setSocket(int sock);
     void execute();
 
 

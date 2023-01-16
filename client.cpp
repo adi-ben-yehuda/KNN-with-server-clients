@@ -16,14 +16,12 @@ int getPort(char **argv) {
     /* Check if the arg is number*/
     if (isNumeric(argv[2])) {
         port = atoi(argv[2]);
-        if (port < 1024 || port > 65535 ) { // Check if the port is in the valid range.
+        if (port < 1024 || port > 65535) { // Check if the port is in the valid range.
             port = 0;
         }
     }
     return port;
 }
-
-
 
 
 void option1(int sock) {
@@ -80,6 +78,50 @@ void option1(int sock) {
     }
 }
 
+void option2(int sock) {
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer), sent_bytes;
+    string parameters;
+
+    // Receive message of the current settings from the server.
+    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
+
+    // Get the parameters from the console.
+    getline(cin, parameters);
+    getline(cin, parameters);
+
+    if (parameters != "") {
+        sent_bytes = send(sock, parameters.c_str(), parameters.length(), 0);
+        if (sent_bytes < 0) {
+            cout << "Sending failed" << endl;
+        }
+    } else {
+        sent_bytes = send(sock, "*", 1, 0);
+        if (sent_bytes < 0) {
+            cout << "Sending failed" << endl;
+        }
+    }
+
+    memset(buffer, '\000', 4096);
+    // Get invalid message and the menu from server.
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
+
+}
+
 int main(int argc, char **argv) {
     // If the arguments are empty. or the port is invalid.
     if (argc != 3 || getPort(argv) == 0) {
@@ -95,7 +137,6 @@ int main(int argc, char **argv) {
     string input = "", arg = "", data = "", option = "";
     double numCheck = 0.0, validDistance = 0.0;
     int countErrors = 0;
-
 
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -136,10 +177,10 @@ int main(int argc, char **argv) {
         if (sent_bytes < 0) {
             cout << "Sending failed" << endl;
         }
-        if (option == "1"){
+        if (option == "1") {
             option1(sock);
-
-
+        } else if (option == "2") {
+            option2(sock);
         }
 
 //        p.clear();
@@ -234,13 +275,13 @@ int main(int argc, char **argv) {
 //            }
 
 
-        }
+    }
 
-        data = "";
-        countErrors = 0;
-        isValid = true;
-        isK = false;
-        isDistance = false;
-        isVector = false;
+    data = "";
+    countErrors = 0;
+    isValid = true;
+    isK = false;
+    isDistance = false;
+    isVector = false;
 //    }
 }

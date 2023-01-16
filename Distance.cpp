@@ -21,6 +21,14 @@ double getDistance(vector<double> p, vector<double> q, string distType) {
     return -1;
 }
 
+/* The function gets distance and checks if it is valid. */
+bool isDistanceValid(string distType) {
+    if (distType == "AUC" || distType == "MAN" || distType == "CHB" || distType == "CAN" || distType == "MIN") {
+        return true;
+    }
+    return false;
+}
+
 /* The function gets two vectors. Calculates the distance
     between the vector according to taxicab geometry algorithm.
     Returns the distance. */

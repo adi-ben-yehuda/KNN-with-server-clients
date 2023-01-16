@@ -22,7 +22,7 @@ using namespace std;
 /* The function gets string of the user input and checks if it is numeric. */
 bool optionIsNumber(string buffer) {
     char opt = buffer[0];
-    if ((opt == '1' || opt == '2' || opt == '3' || opt == '4' || opt == '5') && buffer[1] == '\000'){
+    if ((opt == '1' || opt == '2' || opt == '3' || opt == '4' || opt == '5') && buffer[1] == '\000') {
         return true;
     }
     return false;
@@ -37,7 +37,7 @@ bool cmp(pair<string, int> &a, pair<string, int> &b) {
 /*  Function to sort the map according to value in a (key-value) pairs. */
 void sort(map<string, int> &M) {
     // Declare vector of pairs
-    vector<pair<string, int> > A;
+    vector <pair<string, int>> A;
 
     // Copy key-value pair from Map to vector of pairs
     for (auto &it: M) {
@@ -50,7 +50,7 @@ void sort(map<string, int> &M) {
 
 /* The function runs on each element in the heap and return the most common type. */
 string getCommonType(MaxHeap kHeap) {
-    priority_queue<tuple<double, string>, vector<tuple<double, string>>, Comparator> temp = kHeap.getHeap();
+    priority_queue <tuple<double, string>, vector<tuple<double, string>>, Comparator> temp = kHeap.getHeap();
     map<string, int> commonTypeMap;
     string type = "", commonTypeStr = "";
 
@@ -120,8 +120,6 @@ void sendMenu(Command *options[5], int clientSocket) {
 }
 
 
-
-
 int main(int argc, char **argv) {
 
     // Check if the args are valid, if not we get out of the program.
@@ -176,46 +174,45 @@ int main(int argc, char **argv) {
 //    while (true) {
 
 
-        // Create socket for a specific client.
-        struct sockaddr_in client_sin;
-        unsigned int addrLen = sizeof(client_sin);
-        int clientSocket = accept(serverSocket, (struct sockaddr *) &client_sin, &addrLen);
+    // Create socket for a specific client.
+    struct sockaddr_in client_sin;
+    unsigned int addrLen = sizeof(client_sin);
+    int clientSocket = accept(serverSocket, (struct sockaddr *) &client_sin, &addrLen);
 
-        // Check if the creation of the socket succeeded.
-        if (clientSocket < 0) {
-            perror("error accepting client");
-        }
+    // Check if the creation of the socket succeeded.
+    if (clientSocket < 0) {
+        perror("error accepting client");
+    }
 
-        while (true) {
-            sendMenu(options, clientSocket);
+    while (true) {
+        sendMenu(options, clientSocket);
 
-            // Get data from the clientSocket to buffer.
-            char buffer[4096] = " ";
-            int expectedDataLen = sizeof(buffer);
-            int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
+        // Get data from the clientSocket to buffer.
+        char buffer[4096] = " ";
+        int expectedDataLen = sizeof(buffer);
+        int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
 
-            if (readBytes <= 0) {
-                isValid = false;
-            } else if (buffer[0] == '8' && buffer[1] == '\000') {
-                // The user enters 8 in the console.
-                close(clientSocket);
-                break;
-            } else {
-                if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
-                    int i = stoi(&buffer[0])-1;
-                    options[i]->setSocket(clientSocket);
-                    options[i]->execute();
-                } else { // Print invalid input.
-                    sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
-                    // Check if the sending of the data succeeded.
-                    if (sent_bytes < 0) {
+        if (readBytes <= 0) {
+            isValid = false;
+        } else if (buffer[0] == '8' && buffer[1] == '\000') {
+            // The user enters 8 in the console.
+            close(clientSocket);
+            break;
+        } else {
+            if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
+                i = stoi(&buffer[0]) - 1;
+                options[i]->setSocket(clientSocket);
+                options[i]->execute();
+            } else { // Print invalid input.
+                sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
+                // Check if the sending of the data succeeded.
+                if (sent_bytes < 0) {
                     perror("error sending to client");
-                    }
                 }
-
-
-
             }
+
+
+        }
 //                string num = "";
 //                // Separate the buffer by spaces.
 //                token = strtok(buffer, " ");
@@ -293,7 +290,7 @@ int main(int argc, char **argv) {
 //            isValid = true;
 //            countErrors = 0;
 //            p.clear();
-        }
+    }
 //    }
 
     close(serverSocket);
