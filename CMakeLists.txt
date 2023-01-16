@@ -8,7 +8,7 @@ include_directories(.)
 add_executable(advanced_ex_4
         Distance.cpp
         Distance.h
-        server.cpp
+        client.cpp
         File.h
         File.cpp
         MaxHeap.cpp

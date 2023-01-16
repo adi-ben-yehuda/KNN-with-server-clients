@@ -46,6 +46,11 @@ void Classify::setPathTest(string path) {
     pathTest = path;
 }
 
+// Setter for clientSocket.
+void Classify::setSocket(int socket){
+    sock = socket;
+}
+
 // Getter for metric.
 string Classify::getPathTest() {
     return pathTest;

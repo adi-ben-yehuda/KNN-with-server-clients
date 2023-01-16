@@ -23,6 +23,7 @@ public:
     void setPathTrain(string pathTrain);
     string getPathTrain();
     void setPathTest(string pathTest);
+    void setSocket(int sock);
     string getPathTest();
     string getDescription();
     void execute();

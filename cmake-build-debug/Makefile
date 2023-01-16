@@ -201,6 +201,30 @@ Distance.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Distance.cpp.s
 .PHONY : Distance.cpp.s
 
+Download.o: Download.cpp.o
+.PHONY : Download.o
+
+# target to build an object file
+Download.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.o
+.PHONY : Download.cpp.o
+
+Download.i: Download.cpp.i
+.PHONY : Download.i
+
+# target to preprocess a source file
+Download.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.i
+.PHONY : Download.cpp.i
+
+Download.s: Download.cpp.s
+.PHONY : Download.s
+
+# target to generate assembly for a file
+Download.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Download.cpp.s
+.PHONY : Download.cpp.s
+
 File.o: File.cpp.o
 .PHONY : File.o
 
@@ -321,29 +345,29 @@ UploadFile.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.s
 .PHONY : UploadFile.cpp.s
 
-server.o: server.cpp.o
-.PHONY : server.o
+client.o: client.cpp.o
+.PHONY : client.o
 
 # target to build an object file
-server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.o
-.PHONY : server.cpp.o
+client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.o
+.PHONY : client.cpp.o
 
-server.i: server.cpp.i
-.PHONY : server.i
+client.i: client.cpp.i
+.PHONY : client.i
 
 # target to preprocess a source file
-server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.i
-.PHONY : server.cpp.i
+client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.i
+.PHONY : client.cpp.i
 
-server.s: server.cpp.s
-.PHONY : server.s
+client.s: client.cpp.s
+.PHONY : client.s
 
 # target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.s
-.PHONY : server.cpp.s
+client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.s
+.PHONY : client.cpp.s
 
 # Help Target
 help:
@@ -363,6 +387,9 @@ help:
 	@echo "... Distance.o"
 	@echo "... Distance.i"
 	@echo "... Distance.s"
+	@echo "... Download.o"
+	@echo "... Download.i"
+	@echo "... Download.s"
 	@echo "... File.o"
 	@echo "... File.i"
 	@echo "... File.s"
@@ -378,9 +405,9 @@ help:
 	@echo "... UploadFile.o"
 	@echo "... UploadFile.i"
 	@echo "... UploadFile.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
+	@echo "... client.o"
+	@echo "... client.i"
+	@echo "... client.s"
 .PHONY : help
 
 

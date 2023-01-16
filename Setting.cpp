@@ -23,6 +23,11 @@ void Setting::setMetric(string dist){
     metric = dist;
 }
 
+// Setter for clientSocket.
+void Setting::setSocket(int socket){
+    sock = socket;
+}
+
 // Getter for metric.
 string Setting::getMetric() {
     return metric;

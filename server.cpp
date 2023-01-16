@@ -18,6 +18,17 @@
 
 using namespace std;
 
+
+/* The function gets string of the user input and checks if it is numeric. */
+bool optionIsNumber(string buffer) {
+    char opt = buffer[0];
+    if ((opt == '1' || opt == '2' || opt == '3' || opt == '4' || opt == '5') && buffer[1] == '\000'){
+        return true;
+    }
+    return false;
+}
+
+
 /* Comparator function to sort pairs according to second value. */
 bool cmp(pair<string, int> &a, pair<string, int> &b) {
     return a.second > b.second;
@@ -92,28 +103,23 @@ bool argsIsValid(int argc, char **argv) {
     return true;
 }
 
-void sendMenu(Command options[5], int clientSocket) {
+void sendMenu(Command *options[5], int clientSocket) {
     string desc;
     int sent_bytes;
 
     desc = "Welcome to the KNN Classifier Server. Please choose an option:\n";
+    for (int i = 0; i < 5; ++i) {
+        desc += options[i]->getDescription() + "\n";
+    }
     sent_bytes = send(clientSocket, desc.c_str(), desc.length(), 0);
 
     // Check if the sending of the data succeeded.
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
-
-    for (int i = 0; i < 5; ++i) {
-        desc = options[i].getDescription() + "\n";
-        sent_bytes = send(clientSocket, desc.c_str(), desc.length(), 0);
-
-        // Check if the sending of the data succeeded.
-        if (sent_bytes < 0) {
-            perror("error sending to client");
-        }
-    }
 }
+
+
 
 
 int main(int argc, char **argv) {
@@ -134,13 +140,13 @@ int main(int argc, char **argv) {
     double numCheck = 0.0, validDistance = 0.0;
 //    MaxHeap kHeap;
 
-    Command options[5] = {};
+    Command *options[5];
 
-    options[0] = UploadFile();
-    options[1] = Setting();
-    options[2] = Classify();
-    options[3] = Results();
-    options[4] = Download();
+    options[0] = new UploadFile();
+    options[1] = new Setting();
+    options[2] = new Classify();
+    options[3] = new Results();
+    options[4] = new Download();
 
 
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -183,18 +189,33 @@ int main(int argc, char **argv) {
         while (true) {
             sendMenu(options, clientSocket);
 
-//            // Get data from the clientSocket to buffer.
-//            char buffer[4096] = " ";
-//            int expectedDataLen = sizeof(buffer);
-//            int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
-//
-//            if (readBytes <= 0) {
-//                isValid = false;
-//            } else if (buffer[0] == '0' && buffer[1] == '\000') {
-//                // The user enters -1 in the console.
-//                close(clientSocket);
-//                break;
-//            } else {
+            // Get data from the clientSocket to buffer.
+            char buffer[4096] = " ";
+            int expectedDataLen = sizeof(buffer);
+            int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
+
+            if (readBytes <= 0) {
+                isValid = false;
+            } else if (buffer[0] == '8' && buffer[1] == '\000') {
+                // The user enters 8 in the console.
+                close(clientSocket);
+                break;
+            } else {
+                if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
+                    int i = stoi(&buffer[0])-1;
+                    options[i]->setSocket(clientSocket);
+                    options[i]->execute();
+                } else { // Print invalid input.
+                    sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
+                    // Check if the sending of the data succeeded.
+                    if (sent_bytes < 0) {
+                    perror("error sending to client");
+                    }
+                }
+
+
+
+            }
 //                string num = "";
 //                // Separate the buffer by spaces.
 //                token = strtok(buffer, " ");
