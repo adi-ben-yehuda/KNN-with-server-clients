@@ -52,7 +52,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/shahar/Documents/advencd1/ex4/advanced_ex_4/."
+					"path" : "/home/adi/Documents/advance_programming/advanced_ex_4/."
 				}
 			],
 			"language" : "CXX",
@@ -152,7 +152,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "client.cpp",
+			"path" : "server.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
