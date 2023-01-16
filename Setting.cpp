@@ -7,8 +7,10 @@
 
 using namespace std;
 
-Setting::Setting() {
+Setting::Setting(Data data) {
     description = "2. algorithm settings";
+    this->data = data;
+
 }
 
 string Setting::getDescription() {
@@ -22,8 +24,8 @@ void Setting::setSocket(int socket){
 
 
 void Setting::execute() {
-    string message = "The current KNN parameters are: K = " + to_string(Data::k)
-                     + ", distance metric = " + Data::metric + "\n", kInvalid = "invalid value for K\n",
+    string message = "The current KNN parameters are: K = " + to_string(data.k)
+                     + ", distance metric = " + data.metric + "\n", kInvalid = "invalid value for K\n",
             metricInvalid = "invalid value for metric\n", m = "invalid input\n", tempMetric;
     char buffer[4096] = " ", *token = NULL;
     int sent_bytes, read_bytes, count = 0, tempK;
@@ -89,8 +91,8 @@ void Setting::execute() {
         }
 
         if (kValid && mValid) {
-            Data::k = tempK;
-            Data::metric = tempMetric;
+            data.k = tempK;
+            data.metric = tempMetric;
         }
     }
 }

@@ -8,13 +8,13 @@ using namespace std;
 
 class Data {
 public:
-    static int k;
-    static string metric;
-    static string pathTrain;
-    static string pathTest;
-    static map<int, string> classifications; // key = line number. value = classification.
-    static bool isUpload;
-    static bool isClassify;
+    int k;
+    string metric;
+    map<int, string> classifications; // key = line number. value = classification.
+    bool isUpload;
+    bool isTrain;
+    bool isTest;
+    bool isClassify;
 };
 
 #endif //ADVANCED_EX_4_DATA_H

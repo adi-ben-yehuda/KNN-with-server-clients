@@ -3,8 +3,9 @@
 
 using namespace std;
 
-Classify::Classify() {
+Classify::Classify(Data data) {
     description = "3. classify data";
+    this->data = data;
 }
 
 // Setter for clientSocket.
@@ -17,7 +18,7 @@ string Classify::getDescription() {
 }
 
 void Classify::execute() {
-    Data::isClassify = true;
+    data.isClassify = true;
 }
 
 /* Destructor. */

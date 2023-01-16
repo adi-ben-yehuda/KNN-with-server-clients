@@ -121,11 +121,7 @@ void sendMenu(Command *options[5], int clientSocket) {
 }
 
 
-// The default values.
-int Data::k = 5;
-string Data::metric = "AUC";
-bool Data::isUpload = false;
-bool Data::isClassify = false;
+
 
 
 int main(int argc, char **argv) {
@@ -146,13 +142,7 @@ int main(int argc, char **argv) {
     double numCheck = 0.0, validDistance = 0.0;
 //    MaxHeap kHeap;
 
-    Command *options[5];
 
-    options[0] = new UploadFile();
-    options[1] = new Setting();
-    options[2] = new Classify();
-    options[3] = new Results();
-    options[4] = new Download();
 
 
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -191,6 +181,23 @@ int main(int argc, char **argv) {
     if (clientSocket < 0) {
         perror("error accepting client");
     }
+
+    // The default values.
+    Data data = Data();
+    data.k = 5;
+    data.metric = "AUC";
+    data.isUpload = false;
+    data.isClassify = false;
+    data.isTest = false;
+    data.isTrain = false;
+
+    Command *options[5];
+
+    options[0] = new UploadFile(data);
+    options[1] = new Setting(data);
+    options[2] = new Classify(data);
+    options[3] = new Results(data);
+    options[4] = new Download(data);
 
     while (true) {
         sendMenu(options, clientSocket);

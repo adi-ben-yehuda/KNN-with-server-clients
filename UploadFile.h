@@ -2,11 +2,15 @@
 #define ADVANCED_EX_4_UPLOADFILE_H
 
 #include "Command.h"
+#include "Data.h"
+
 
 class UploadFile : public Command {
+private:
+    Data data;
 
 public:
-    UploadFile();
+    UploadFile(Data data);
     void setSocket(int sock);
     string getDescription();
     void execute();

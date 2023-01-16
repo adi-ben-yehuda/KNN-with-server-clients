@@ -6,8 +6,9 @@
 
 using namespace std;
 
-UploadFile::UploadFile() {
+UploadFile::UploadFile(Data data) {
     description = "1. upload an unclassified csv data file";
+    this->data = data;
 }
 
 // Setter for clientSocket.
@@ -20,7 +21,7 @@ string UploadFile::getDescription() {
 }
 
 void UploadFile::execute() {
-    Data::isUpload = true;
+    data.isUpload = true;
 
     ofstream File;
     int sent_bytes, readBytes;

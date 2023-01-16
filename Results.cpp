@@ -1,13 +1,15 @@
 #include "Results.h"
 
-Results::Results() {
+Results::Results(Data data) {
     description =  "4. display results";
+    this->data = data;
 }
 
 void Results::execute(){}
 
 string Results::getDescription() {
     return description;
+
 }
 
 // Setter for clientSocket.
