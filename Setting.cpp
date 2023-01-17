@@ -85,6 +85,16 @@ void Setting::execute() {
             token = strtok(NULL, " ");
         }
 
+        if (count == 1) {
+            // Send message to the client.
+            sent_bytes = send(data->getSock(), metricInvalid.c_str(), metricInvalid.length(), 0);
+            // Check if the sending of the data succeeded.
+            if (sent_bytes < 0) {
+                perror("error sending to client");
+            }
+            mValid = false;
+        }
+
         if (kValid && mValid) {
             data->setK(tempK);
             data->setMetric(tempMetric);

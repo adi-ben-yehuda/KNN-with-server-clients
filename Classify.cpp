@@ -26,7 +26,7 @@ bool cmp(pair<string, int> &a, pair<string, int> &b) {
 /*  Function to sort the map according to value in a (key-value) pairs. */
 void sort(map<string, int> &M) {
     // Declare vector of pairs
-    vector <pair<string, int>> A;
+    vector<pair<string, int>> A;
 
     // Copy key-value pair from Map to vector of pairs
     for (auto &it: M) {
@@ -39,7 +39,7 @@ void sort(map<string, int> &M) {
 
 /* The function runs on each element in the heap and return the most common type. */
 string getCommonType(MaxHeap kHeap) {
-    priority_queue <tuple<double, string>, vector<tuple<double, string>>, Comparator> temp = kHeap.getHeap();
+    priority_queue<tuple<double, string>, vector<tuple<double, string>>, Comparator> temp = kHeap.getHeap();
     map<string, int> commonTypeMap;
     string type = "", commonTypeStr = "";
 
@@ -117,6 +117,7 @@ void Classify::execute() {
             perror("error sending to client");
         }
     }
+    data->setIsClassify(true);
 }
 
 /* Destructor. */

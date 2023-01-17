@@ -29,10 +29,9 @@ bool isFileExist(string fileName) {
 }
 
 ofstream createFile(string fileName) {
-    ofstream File(fileName + ".csv");
+    ofstream File(fileName);
     return File;
 }
-
 
 void sendDataFile(int sock, string path) {
     string temp = "", data = "";
@@ -54,8 +53,6 @@ void sendDataFile(int sock, string path) {
     }
     file.close();
 }
-
-
 
 /* The function gets file name, vector, distance type and k.
     Read every row from the file. If the row is valid, save it in a vector.
@@ -118,3 +115,4 @@ MaxHeap getKNearestElements(string fileName, vector<double> p, string distType, 
     file.close();
     return heap;
 }
+

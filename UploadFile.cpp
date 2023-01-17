@@ -16,7 +16,6 @@ string UploadFile::getDescription() {
 }
 
 void UploadFile::execute() {
-
     ofstream File;
     int sent_bytes, readBytes;
     string messageTrain = "Please upload your local train CSV file.\n",
@@ -31,77 +30,92 @@ void UploadFile::execute() {
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
+    bool firstTime = true;
+    readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);
+    if (readBytes <= 0) {
+        perror("error receiving from client");
+    }
 
-    File = createFile("train");
-    // Get all the data.s
-    while (!close) {
-        readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);
-
-        if (readBytes <= 0) {
-            perror("error receiving from client");
-        } else {
+    if (buffer[0] != '*') { // valid train
+        File = createFile("train.csv");
+        // Get all the data.s
+        while (!close) {
+            if (!firstTime) {
+                readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);
+                if (readBytes <= 0) {
+                    perror("error receiving from client");
+                }
+            }
+            firstTime = false;
             for (int i = 0; i < 4096; ++i) {
                 if (buffer[i] != '&') {
-                    File << buffer[i];
+                    File.put(buffer[i]);
                 } else {
-                    close=true;
+                    close = true;
                     break;
                 }
             }
+
         }
-    }
 
-    File.close();
+        File.close();
 
-    // Send "Upload complete" message to the client.
-    sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
-    // Check if the sending of the data succeeded.
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
+        // Send "Upload complete" message to the client.
+        sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
+        // Check if the sending of the data succeeded.
+        if (sent_bytes < 0) {
+            perror("error sending to client");
+        }
 
-    data->setIsTrain(true);
+        // Send messageTest to the client.
+        sent_bytes = send(data->getSock(), messageTest.c_str(), messageTest.length(), 0);
+        // Check if the sending of the data succeeded.
+        if (sent_bytes < 0) {
+            perror("error sending to client");
+        }
 
-    // Send messageTest to the client.
-    sent_bytes = send(data->getSock(), messageTest.c_str(), messageTest.length(), 0);
-    // Check if the sending of the data succeeded.
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
+        memset(buffer, ' ', 4096);
+        close = false;
 
-    memset(buffer, ' ', 4096);
-    File = createFile("test");
-    close = false;
-
-    while (!close) {
         readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);
-
         if (readBytes <= 0) {
             perror("error receiving from client");
-        } else {
-            for (int i = 0; i < 4096; ++i) {
-                if (buffer[i] != '&') {
-                    File << buffer[i];
-                } else {
-                    close=true;
-                    break;
+        }
+        firstTime = true;
+        if (buffer[0] != '*') { // valid train
+            File = createFile("test.csv");
+            // Get all the data.s
+            while (!close) {
+                if (!firstTime) {
+                    readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);
+                    if (readBytes <= 0) {
+                        perror("error receiving from client");
+                    }
+                }
+                firstTime = false;
+                for (int i = 0; i < 4096; ++i) {
+                    if (buffer[i] != '&') {
+                        File.put(buffer[i]);
+                    } else {
+                        close = true;
+                        break;
+                    }
                 }
             }
+
+            File.close();
+
+            // Send "Upload complete" message to the client.
+            sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
+            // Check if the sending of the data succeeded.
+            if (sent_bytes < 0) {
+                perror("error sending to client");
+            }
+            data->setIsTrain(true);
+            data->setIsTest(true);
         }
     }
-
-    File.close();
-
-    // Send "Upload complete" message to the client.
-    sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
-    // Check if the sending of the data succeeded.
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
-
-    data->setIsTest(true);
 }
-
 
 
 /* Destructor. */
