@@ -4,15 +4,11 @@
 3550	3803	1673878189943269690	CMakeFiles/advanced_ex_4.dir/Command.cpp.o	520439e7fc5e9210
 4290	4669	1673878190807270524	CMakeFiles/advanced_ex_4.dir/Results.cpp.o	892c23a1a8f42d16
 2463	2975	1673878189111268890	CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o	23d3ba91bcd4ec2b
-0	52	1673879803491159581	build.ninja	fc3fe089aafcda1
-2012	2462	1673878188603268405	CMakeFiles/advanced_ex_4.dir/client.cpp.o	ae6e2ce297ea96e0
+0	39	1673944238683844960	build.ninja	fc3fe089aafcda1
 6465	6672	1673451662522982525	advanced_ex_3	df0fe4a3f94524d6
 1	2717	1673879402281993333	CMakeFiles/advanced_ex_4.dir/server.cpp.o	231ac99a00f2ee0d
 4669	5001	1673878191131270835	CMakeFiles/advanced_ex_4.dir/Classify.cpp.o	5ef8214a5c217baf
 5007	5348	1673878191479271173	CMakeFiles/advanced_ex_4.dir/Download.cpp.o	293693ca495ab198
 2975	3549	1673878189687269445	CMakeFiles/advanced_ex_4.dir/Setting.cpp.o	f408ef1475e7616a
 1324	2012	1673878188151267971	CMakeFiles/advanced_ex_4.dir/Distance.cpp.o	6efadaf267c3c9e
-622	742	1673879740778974730	advanced_ex_4	d658f76d01944b1a
-0	39	1673879803491159581	build.ninja	fc3fe089aafcda1
-0	685	1673879804195161660	CMakeFiles/advanced_ex_4.dir/client.cpp.o	ae6e2ce297ea96e0
 685	845	1673879804343162098	advanced_ex_4	791762b622d3704e
