@@ -32,7 +32,7 @@ public:
     void setK(int K);
     void setSock(int sock);
     void setMetric(string metric);
-    void setClassifications(map<int, string>);
+    void addClassifications(pair<int, string> classify);
     void setIsTrain(bool isTrain);
     void setIsTest(bool isTest);
     void setIsClassify(bool isClassify);

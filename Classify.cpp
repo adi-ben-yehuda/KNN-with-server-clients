@@ -64,7 +64,6 @@ string getCommonType(MaxHeap kHeap) {
 }
 
 void Classify::execute() {
-
     MaxHeap heap;
     vector<double> vectorFromFile;
     string temp = "", value = "", complete = "classifying data complete\n", message = "please upload data\n";
@@ -80,6 +79,7 @@ void Classify::execute() {
             line++;
             vectorFromFile.clear();
             stringstream ss(temp);
+            // Read one row from the test file without the \r in the end.
             getline(ss, value, r);
             stringstream sType(value);
             // Read every column data of a row. check if valid, if yes add to vector.
@@ -99,7 +99,7 @@ void Classify::execute() {
             heap = getKNearestElements("train.csv", vectorFromFile, data->getMetric(), data->getK());
             if (!heap.getHeap().empty()) {
                 string common = getCommonType(heap);
-                data->getClassifications().insert(pair<int, string>(line, common));
+                data->addClassifications(pair<int, string>(line, common));
             }
         }
         // Send messageTrain to the client.

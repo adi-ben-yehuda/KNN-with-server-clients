@@ -11,6 +11,7 @@ Data::Data() {
     this->isTrain = false;
     this->isClassify = false;
     this->sock = 0;
+    map<int, string> classifications;
 }
 
 map<int, string> Data::getClassifications() {
@@ -45,8 +46,8 @@ int Data::getSock() {
     return sock;
 }
 
-void Data::setClassifications(map<int, string> classifications) {
-    this->classifications = classifications;
+void Data::addClassifications(pair<int, string> classify) {
+    this->classifications.insert(classify);
 }
 
 void Data::setIsClassify(bool isClassify) {
@@ -61,7 +62,7 @@ void Data::setIsTrain(bool isTrain) {
     this->isTrain = isTrain;
 }
 
-void Data::setK(int K) {
+void Data::setK(int k) {
     this->k = k;
 }
 
