@@ -23,7 +23,6 @@ int getPort(char **argv) {
     return port;
 }
 
-
 void option1(int sock) {
     string pathTrain = "", pathTest = "";
     char buffer[4096] = " ";
@@ -152,16 +151,76 @@ void option3(int sock) {
 void option4(int sock) {
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
+    int read_bytes;
+    bool close = false;
 
-    // Receive message from the server: complete or upload data.
-    int read_bytes = recv(sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) { //  connection is closed
-        close(sock);
-    } else if (read_bytes < 0) {
-        cout << "Acceptance failed" << endl;
-    } else {
-        cout << buffer;
+    // Get all the classification from the server.
+    while (!close) {
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+
+        if (read_bytes <= 0) {
+            perror("error receiving from client");
+        } else {
+            for (int i = 0; i < 4096; ++i) {
+                if (buffer[i] != '&') {
+                    cout << buffer[i];
+                } else {
+                    close=true;
+                    break;
+                }
+            }
+        }
     }
+
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes <= 0) {
+        perror("error receiving from client");
+    }
+}
+
+void option5(int sock) {
+    string path = "";
+    int sent_bytes, read_bytes;
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
+    ofstream File;
+    bool close = false;
+
+    // Get the path for creating file from the user.
+    cin >> path;
+    if (path == "" || isFileExist(path)) {
+        cout << "invalid input" << endl;
+        return;
+    }
+
+    // Send the path to the server.
+    sent_bytes = send(sock, path.c_str(), path.length(), 0);
+    if (sent_bytes < 0) {
+        cout << "Sending failed" << endl;
+    }
+
+    // Receive all the classifications from the server.
+    File = createFile(path);
+    // Get all the data.s
+    while (!close) {
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+
+        if (read_bytes <= 0) {
+            perror("error receiving from client");
+        } else {
+            for (int i = 0; i < 4096; ++i) {
+                if (buffer[i] != '&') {
+                    File << buffer[i];
+                } else {
+                    close=true;
+                    break;
+                }
+            }
+        }
+    }
+
+    File.close();
+
 }
 
 int main(int argc, char **argv) {
@@ -227,6 +286,8 @@ int main(int argc, char **argv) {
             option3(sock);
         } else if (option == "4") {
             option4(sock);
+        } else if (option == "5") {
+            option5(sock);
         }
 
 //        p.clear();

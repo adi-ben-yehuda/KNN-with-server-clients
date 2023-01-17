@@ -28,6 +28,13 @@ void Results::execute(){
     if (sent_bytes < 0) {
         perror("error sending to client");
     }
+
+    // Send a sign for end of the sending to the client.
+    sent_bytes = send(data->getSock(), "&", 1, 0);
+    if (sent_bytes < 0) {
+        cout << "Sending failed" << endl;
+    }
+
 }
 
 /* Destructor. */

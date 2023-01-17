@@ -117,6 +117,7 @@ void Classify::execute() {
             perror("error sending to client");
         }
     }
+    data->setIsClassify(true);
 }
 
 /* Destructor. */

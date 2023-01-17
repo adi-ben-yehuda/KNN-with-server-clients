@@ -16,7 +16,6 @@ string UploadFile::getDescription() {
 }
 
 void UploadFile::execute() {
-
     ofstream File;
     int sent_bytes, readBytes;
     string messageTrain = "Please upload your local train CSV file.\n",
