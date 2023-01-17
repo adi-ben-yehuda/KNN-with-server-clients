@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Classify::Classify(Data data) {
+Classify::Classify(Data *data) {
     description = "3. classify data";
     this->data = data;
 }
@@ -68,23 +68,22 @@ void Classify::execute() {
     MaxHeap heap;
     vector<double> vectorFromFile;
     string temp = "", value = "", complete = "classifying data complete\n", message = "please upload data\n";
-    char delim = ',';
+    char delim = ',', r = '\r';
     double num = 0.0, numCheck = 0.0;
-    int countErrors = 0, line = 0, sent_bytes = 0;
+    int line = 0, sent_bytes = 0;
     ifstream testFile;
 
-    if (data.getIsUpload()) {
-
+    if (data->getIsUpload()) {
         testFile.open("test.csv");
         // Read the Data from the test file as double Vector.
         while (getline(testFile, temp)) {
             line++;
             vectorFromFile.clear();
-            countErrors = 0;
             stringstream ss(temp);
-
+            getline(ss, value, r);
+            stringstream sType(value);
             // Read every column data of a row. check if valid, if yes add to vector.
-            while (getline(ss, value, delim)) {
+            while (getline(sType, value, delim)) {
                 stringstream ss2(value);
                 /* Check if the input is numeric. */
                 if (isNumeric(value)) {
@@ -94,32 +93,25 @@ void Classify::execute() {
                     /* That is, the input is double or negative. */
                     vectorFromFile.push_back(numCheck);
                 } else {
-                    countErrors++;
-                }
-                /* If the data in the vectors are not numeric or double.
-                    There will be one error because of the string in the end. */
-                if (countErrors > 1) {
                     break;
                 }
             }
-            if (countErrors <= 1) {
-                heap = getKNearestElements("train.csv", vectorFromFile, data.getMetric(), data.getK());
-                if (!heap.getHeap().empty()) {
-                    string common = getCommonType(heap);
-                    data.getClassifications().insert(pair<int, string>(line, common));
-                }
+            heap = getKNearestElements("train.csv", vectorFromFile, data->getMetric(), data->getK());
+            if (!heap.getHeap().empty()) {
+                string common = getCommonType(heap);
+                data->getClassifications().insert(pair<int, string>(line, common));
             }
         }
         // Send messageTrain to the client.
-        sent_bytes = send(data.getSock(), complete.c_str(), complete.length(), 0);
+        sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
         // Check if the sending of the data succeeded.
         if (sent_bytes < 0) {
             perror("error sending to client");
         }
-        data.setIsClassify(true);
+        data->setIsClassify(true);
     } else {
         // Send messageTrain to the client.
-        sent_bytes = send(data.getSock(), message.c_str(), message.length(), 0);
+        sent_bytes = send(data->getSock(), message.c_str(), message.length(), 0);
         // Check if the sending of the data succeeded.
         if (sent_bytes < 0) {
             perror("error sending to client");

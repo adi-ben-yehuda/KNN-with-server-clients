@@ -8,9 +8,9 @@
 
 class Results : public Command {
 private:
-    Data data;
+    Data *data;
 public:
-    Results(Data data);
+    Results(Data *data);
     void execute();
     string getDescription();
     ~Results();

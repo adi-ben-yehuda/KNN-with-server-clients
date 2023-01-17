@@ -141,11 +141,11 @@ int main(int argc, char **argv) {
     data.setSock(clientSocket);
     Command *options[5];
 
-    options[0] = new UploadFile(data);
-    options[1] = new Setting(data);
-    options[2] = new Classify(data);
-    options[3] = new Results(data);
-    options[4] = new Download(data);
+    options[0] = new UploadFile(&data);
+    options[1] = new Setting(&data);
+    options[2] = new Classify(&data);
+    options[3] = new Results(&data);
+    options[4] = new Download(&data);
 
     while (true) {
         sendMenu(options, clientSocket);

@@ -83,19 +83,19 @@ CMakeFiles/advanced_ex_4.dir/Distance.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/advanced_ex_4.dir/Distance.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shahar/Documents/advencd1/advanced_ex_4/Distance.cpp -o CMakeFiles/advanced_ex_4.dir/Distance.cpp.s
 
-CMakeFiles/advanced_ex_4.dir/client.cpp.o: CMakeFiles/advanced_ex_4.dir/flags.make
-CMakeFiles/advanced_ex_4.dir/client.cpp.o: /home/shahar/Documents/advencd1/advanced_ex_4/client.cpp
-CMakeFiles/advanced_ex_4.dir/client.cpp.o: CMakeFiles/advanced_ex_4.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/advanced_ex_4.dir/client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/advanced_ex_4.dir/client.cpp.o -MF CMakeFiles/advanced_ex_4.dir/client.cpp.o.d -o CMakeFiles/advanced_ex_4.dir/client.cpp.o -c /home/shahar/Documents/advencd1/advanced_ex_4/client.cpp
+CMakeFiles/advanced_ex_4.dir/server.cpp.o: CMakeFiles/advanced_ex_4.dir/flags.make
+CMakeFiles/advanced_ex_4.dir/server.cpp.o: /home/shahar/Documents/advencd1/advanced_ex_4/server.cpp
+CMakeFiles/advanced_ex_4.dir/server.cpp.o: CMakeFiles/advanced_ex_4.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/advanced_ex_4.dir/server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/advanced_ex_4.dir/server.cpp.o -MF CMakeFiles/advanced_ex_4.dir/server.cpp.o.d -o CMakeFiles/advanced_ex_4.dir/server.cpp.o -c /home/shahar/Documents/advencd1/advanced_ex_4/server.cpp
 
-CMakeFiles/advanced_ex_4.dir/client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/advanced_ex_4.dir/client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shahar/Documents/advencd1/advanced_ex_4/client.cpp > CMakeFiles/advanced_ex_4.dir/client.cpp.i
+CMakeFiles/advanced_ex_4.dir/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/advanced_ex_4.dir/server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shahar/Documents/advencd1/advanced_ex_4/server.cpp > CMakeFiles/advanced_ex_4.dir/server.cpp.i
 
-CMakeFiles/advanced_ex_4.dir/client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/advanced_ex_4.dir/client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shahar/Documents/advencd1/advanced_ex_4/client.cpp -o CMakeFiles/advanced_ex_4.dir/client.cpp.s
+CMakeFiles/advanced_ex_4.dir/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/advanced_ex_4.dir/server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shahar/Documents/advencd1/advanced_ex_4/server.cpp -o CMakeFiles/advanced_ex_4.dir/server.cpp.s
 
 CMakeFiles/advanced_ex_4.dir/File.cpp.o: CMakeFiles/advanced_ex_4.dir/flags.make
 CMakeFiles/advanced_ex_4.dir/File.cpp.o: /home/shahar/Documents/advencd1/advanced_ex_4/File.cpp
@@ -209,10 +209,24 @@ CMakeFiles/advanced_ex_4.dir/Download.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/advanced_ex_4.dir/Download.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shahar/Documents/advencd1/advanced_ex_4/Download.cpp -o CMakeFiles/advanced_ex_4.dir/Download.cpp.s
 
+CMakeFiles/advanced_ex_4.dir/Data.cpp.o: CMakeFiles/advanced_ex_4.dir/flags.make
+CMakeFiles/advanced_ex_4.dir/Data.cpp.o: /home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp
+CMakeFiles/advanced_ex_4.dir/Data.cpp.o: CMakeFiles/advanced_ex_4.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/advanced_ex_4.dir/Data.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/advanced_ex_4.dir/Data.cpp.o -MF CMakeFiles/advanced_ex_4.dir/Data.cpp.o.d -o CMakeFiles/advanced_ex_4.dir/Data.cpp.o -c /home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp
+
+CMakeFiles/advanced_ex_4.dir/Data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/advanced_ex_4.dir/Data.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp > CMakeFiles/advanced_ex_4.dir/Data.cpp.i
+
+CMakeFiles/advanced_ex_4.dir/Data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/advanced_ex_4.dir/Data.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp -o CMakeFiles/advanced_ex_4.dir/Data.cpp.s
+
 # Object files for target advanced_ex_4
 advanced_ex_4_OBJECTS = \
 "CMakeFiles/advanced_ex_4.dir/Distance.cpp.o" \
-"CMakeFiles/advanced_ex_4.dir/client.cpp.o" \
+"CMakeFiles/advanced_ex_4.dir/server.cpp.o" \
 "CMakeFiles/advanced_ex_4.dir/File.cpp.o" \
 "CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o" \
 "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o" \
@@ -220,13 +234,14 @@ advanced_ex_4_OBJECTS = \
 "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o" \
 "CMakeFiles/advanced_ex_4.dir/Results.cpp.o" \
 "CMakeFiles/advanced_ex_4.dir/Classify.cpp.o" \
-"CMakeFiles/advanced_ex_4.dir/Download.cpp.o"
+"CMakeFiles/advanced_ex_4.dir/Download.cpp.o" \
+"CMakeFiles/advanced_ex_4.dir/Data.cpp.o"
 
 # External object files for target advanced_ex_4
 advanced_ex_4_EXTERNAL_OBJECTS =
 
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Distance.cpp.o
-advanced_ex_4: CMakeFiles/advanced_ex_4.dir/client.cpp.o
+advanced_ex_4: CMakeFiles/advanced_ex_4.dir/server.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/File.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/MaxHeap.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Setting.cpp.o
@@ -235,9 +250,10 @@ advanced_ex_4: CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Results.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Classify.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Download.cpp.o
+advanced_ex_4: CMakeFiles/advanced_ex_4.dir/Data.cpp.o
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/build.make
 advanced_ex_4: CMakeFiles/advanced_ex_4.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable advanced_ex_4"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable advanced_ex_4"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/advanced_ex_4.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

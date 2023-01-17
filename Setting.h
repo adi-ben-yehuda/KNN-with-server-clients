@@ -11,10 +11,10 @@ using namespace std;
 
 class Setting : public Command {
 private:
-    Data data;
+    Data *data;
 
 public:
-    Setting(Data data);
+    Setting(Data *data);
 
     string getDescription();
     void execute();

@@ -10,10 +10,10 @@ using namespace std;
 
 class Download : public Command {
 private:
-    Data data;
+    Data *data;
 
 public:
-    Download(Data data);
+    Download(Data *data);
 
     string getDescription();
     void execute();

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Download::Download(Data data) {
+Download::Download(Data *data) {
     description = "5. download results";
     this->data = data;
 }

@@ -7,10 +7,10 @@
 
 class UploadFile : public Command {
 private:
-    Data data;
+    Data *data;
 
 public:
-    UploadFile(Data data);
+    UploadFile(Data *data);
     string getDescription();
     void execute();
     ~UploadFile();

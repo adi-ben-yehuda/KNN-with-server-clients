@@ -8,10 +8,10 @@
 
 class Classify : public Command {
 private:
-    Data data;
+    Data *data;
 
 public:
-    Classify(Data data);
+    Classify(Data *data);
     string getDescription();
     void execute();
 

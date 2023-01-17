@@ -1,6 +1,6 @@
 #include "Results.h"
 
-Results::Results(Data data) {
+Results::Results(Data *data) {
     description =  "4. display results";
     this->data = data;
 }

@@ -96,6 +96,12 @@
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Command.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Data.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Distance.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
@@ -138,7 +144,7 @@
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/UploadFile.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
-		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/client.cpp">
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/server.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/CMakeLists.txt">
