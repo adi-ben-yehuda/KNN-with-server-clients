@@ -6,6 +6,7 @@
 #include "Command.h"
 #include "Data.h"
 
+
 class Results : public Command {
 private:
     Data *data;

@@ -40,7 +40,8 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    cin >> pathTrain;
+ /////   cin >> pathTrain;
+    pathTrain = "iris_classified.csv";
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
         cout << "invalid input" << endl;
@@ -59,7 +60,8 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    cin >> pathTest;
+    /////   cin >> pathTest;
+    pathTest = "iris_Unclassified.csv";
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
         cout << "invalid input" << endl;
@@ -135,6 +137,31 @@ void option3(int sock) {
         cout << buffer;
     }
 
+    // Receive message from the server: complete or upload data.
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
+
+}
+
+void option4(int sock) {
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
+
+    // Receive message from the server: complete or upload data.
+    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer;
+    }
 }
 
 int main(int argc, char **argv) {
@@ -198,6 +225,8 @@ int main(int argc, char **argv) {
             option2(sock);
         } else if (option == "3") {
             option3(sock);
+        } else if (option == "4") {
+            option4(sock);
         }
 
 //        p.clear();
