@@ -29,7 +29,7 @@ bool isFileExist(string fileName) {
 }
 
 ofstream createFile(string fileName) {
-    ofstream File(fileName + ".csv");
+    ofstream File(fileName);
     return File;
 }
 

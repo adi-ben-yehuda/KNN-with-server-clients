@@ -27,9 +27,10 @@ void option1(int sock) {
     string pathTrain = "", pathTest = "";
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
+    int sent_bytes, read_bytes;
 
     // Receive messageTrain from the server.
-    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
         close(sock);
     } else if (read_bytes < 0) {
@@ -39,11 +40,25 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
- /////   cin >> pathTrain;
+    ////// cin >> pathTrain;
+    //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
     pathTrain = "iris_classified.csv";
+
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
         cout << "invalid input" << endl;
+        // Send messageTrain to the client.
+        sent_bytes = send(sock, "*", 1, 0);
+        // Check if the sending of the data succeeded.
+        if (sent_bytes < 0) {
+            perror("error sending to client");
+        }
+        // Get menu from server.
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+        if (read_bytes <= 0) {
+            cout << "Acceptance failed" << endl;
+        }
+        cout << buffer;
         return;
     }
     sendDataFile(sock, pathTrain);
@@ -59,11 +74,25 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    /////   cin >> pathTest;
+    ///// cin >> pathTest;
+    // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
     pathTest = "iris_Unclassified.csv";
+
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
         cout << "invalid input" << endl;
+        // Send messageTrain to the client.
+        sent_bytes = send(sock, "*", 1, 0);
+        // Check if the sending of the data succeeded.
+        if (sent_bytes < 0) {
+            perror("error sending to client");
+        }
+        // Get menu from server.
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+        if (read_bytes <= 0) {
+            cout << "Acceptance failed" << endl;
+        }
+        cout << buffer;
         return;
     }
     sendDataFile(sock, pathTest);
@@ -162,19 +191,14 @@ void option4(int sock) {
             perror("error receiving from client");
         } else {
             for (int i = 0; i < 4096; ++i) {
-                if (buffer[i] != '&') {
+                if (buffer[i] != '&' && buffer[i] != '\000') {
                     cout << buffer[i];
-                } else {
-                    close=true;
+                } else if (buffer[i] == '\000') {
+                    close = true;
                     break;
                 }
             }
         }
-    }
-
-    read_bytes = recv(sock, buffer, expected_data_len, 0);
-    if (read_bytes <= 0) {
-        perror("error receiving from client");
     }
 }
 
@@ -184,7 +208,7 @@ void option5(int sock) {
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
-    bool close = false;
+    bool close = false, sign = false;
 
     // Get the path for creating file from the user.
     cin >> path;
@@ -193,34 +217,33 @@ void option5(int sock) {
         return;
     }
 
-    // Send the path to the server.
-    sent_bytes = send(sock, path.c_str(), path.length(), 0);
-    if (sent_bytes < 0) {
-        cout << "Sending failed" << endl;
-    }
-
     // Receive all the classifications from the server.
     File = createFile(path);
-    // Get all the data.s
-    while (!close) {
-        read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (File) {
+        // Get all the data.s
+        while (!close) {
+            read_bytes = recv(sock, buffer, expected_data_len, 0);
 
-        if (read_bytes <= 0) {
-            perror("error receiving from client");
-        } else {
-            for (int i = 0; i < 4096; ++i) {
-                if (buffer[i] != '&') {
-                    File << buffer[i];
-                } else {
-                    close=true;
-                    break;
+            if (read_bytes <= 0) {
+                perror("error receiving from client");
+            } else {
+                for (int i = 0; i < 4096; ++i) {
+                    if (!sign && buffer[i] != '&') {
+                        File.put(buffer[i]);
+                    } else if (buffer[i] == '&') {
+                        sign = true;
+                    } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
+                        cout << buffer[i];
+                    } else if (buffer[i] == '\000') {
+                        close = true;
+                        break;
+                    }
                 }
             }
         }
+
+        File.close();
     }
-
-    File.close();
-
 }
 
 int main(int argc, char **argv) {
