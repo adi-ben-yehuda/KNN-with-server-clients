@@ -4,16 +4,17 @@
 #include <iostream>
 #include <map>
 #include "Command.h"
+#include "Data.h"
 
 using namespace std;
 
 class Download : public Command {
 private:
-    map<int, string> classifications;
+    Data *data;
 
 public:
-    Download();
-    void setSocket(int sock);
+    Download(Data *data);
+
     string getDescription();
     void execute();
 

@@ -4,14 +4,14 @@
 #include <iostream>
 #include <map>
 #include "Command.h"
+#include "Data.h"
 
 class Classify : public Command {
+private:
+    Data *data;
 
 public:
-    Classify();
-
-    void setSocket(int sock);
-
+    Classify(Data *data);
     string getDescription();
     void execute();
 

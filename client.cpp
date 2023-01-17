@@ -125,7 +125,7 @@ void option3(int sock) {
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
 
-    // Receive message from the server: complete or upload data
+    // Receive message from the server: complete or upload data.
     int read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
         close(sock);

@@ -29,52 +29,6 @@ bool optionIsNumber(string buffer) {
     return false;
 }
 
-
-/* Comparator function to sort pairs according to second value. */
-bool cmp(pair<string, int> &a, pair<string, int> &b) {
-    return a.second > b.second;
-}
-
-/*  Function to sort the map according to value in a (key-value) pairs. */
-void sort(map<string, int> &M) {
-    // Declare vector of pairs
-    vector <pair<string, int>> A;
-
-    // Copy key-value pair from Map to vector of pairs
-    for (auto &it: M) {
-        A.push_back(it);
-    }
-
-    // Sort using comparator function
-    sort(A.begin(), A.end(), cmp);
-}
-
-/* The function runs on each element in the heap and return the most common type. */
-string getCommonType(MaxHeap kHeap) {
-    priority_queue <tuple<double, string>, vector<tuple<double, string>>, Comparator> temp = kHeap.getHeap();
-    map<string, int> commonTypeMap;
-    string type = "", commonTypeStr = "";
-
-    while (!temp.empty()) {
-        type = get<1>(temp.top());
-        auto search = commonTypeMap.find(type);
-        if (search != commonTypeMap.end()) {
-            // Found. Therefore, increase the value by 1
-            search->second += 1;
-        } else {
-            // Not Found therefore add another element to the map
-            commonTypeMap.insert(std::pair<string, int>(type, 1));
-        }
-
-        temp.pop();
-    }
-
-    sort(commonTypeMap);
-    auto it = commonTypeMap.begin();
-    commonTypeStr = it->first;
-    return commonTypeStr;
-}
-
 /* Function that get the port as an argument.
  * Check if it is number and and if it is in the valid range.*/
 int getPort(char **argv) {
@@ -121,11 +75,7 @@ void sendMenu(Command *options[5], int clientSocket) {
 }
 
 
-// The default values.
-int Data::k = 5;
-string Data::metric = "AUC";
-bool Data::isUpload = false;
-bool Data::isClassify = false;
+
 
 
 int main(int argc, char **argv) {
@@ -146,13 +96,7 @@ int main(int argc, char **argv) {
     double numCheck = 0.0, validDistance = 0.0;
 //    MaxHeap kHeap;
 
-    Command *options[5];
 
-    options[0] = new UploadFile();
-    options[1] = new Setting();
-    options[2] = new Classify();
-    options[3] = new Results();
-    options[4] = new Download();
 
 
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -192,6 +136,17 @@ int main(int argc, char **argv) {
         perror("error accepting client");
     }
 
+    // The default values.
+    Data data = Data();
+    data.setSock(clientSocket);
+    Command *options[5];
+
+    options[0] = new UploadFile(&data);
+    options[1] = new Setting(&data);
+    options[2] = new Classify(&data);
+    options[3] = new Results(&data);
+    options[4] = new Download(&data);
+
     while (true) {
         sendMenu(options, clientSocket);
 
@@ -209,9 +164,6 @@ int main(int argc, char **argv) {
         } else {
             if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
                 i = stoi(&buffer[0]) - 1;
-                options[i]->setSocket(clientSocket);
-
-
                 options[i]->execute();
             } else { // Print invalid input.
                 sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);

@@ -10,13 +10,13 @@
 using namespace std;
 
 class Setting : public Command {
+private:
+    Data *data;
 
 public:
-    Setting();
+    Setting(Data *data);
 
     string getDescription();
-    void setSocket(int sock);
-
     void execute();
 
     ~Setting();
