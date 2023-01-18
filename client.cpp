@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "File.h"
+#include <pthread.h>
 
 using namespace std;
 
@@ -40,7 +41,7 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    ////// cin >> pathTrain;
+    ////cin >> pathTrain;
     //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
     pathTrain = "iris_classified.csv";
 
@@ -74,7 +75,7 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    ///// cin >> pathTest;
+    ///////cin >> pathTest;
     // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
     pathTest = "iris_Unclassified.csv";
 
@@ -202,23 +203,24 @@ void option4(int sock) {
     }
 }
 
-void option5(int sock) {
-    string path = "";
-    int sent_bytes, read_bytes;
+struct argsStruct {
+    int socket;
+    string path;
+};
+
+
+void* writeToFile(void * arg){
+
+    struct argsStruct *args = (argsStruct  *) arg;
+    int read_bytes;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
     bool close = false, sign = false;
-
-    // Get the path for creating file from the user.
-    cin >> path;
-    if (path == "" || isFileExist(path)) {
-        cout << "invalid input" << endl;
-        return;
-    }
-
+    int sock = args->socket;
     // Receive all the classifications from the server.
-    File = createFile(path);
+
+    File = createFile(args->path);
     if (File) {
         // Get all the data.s
         while (!close) {
@@ -241,8 +243,38 @@ void option5(int sock) {
                 }
             }
         }
-
         File.close();
+    }
+    pthread_exit(NULL); // Close the thread.
+}
+
+void option5(int sock) {
+    string path = "";
+    int sent_bytes, read_bytes, threadC;
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
+    ofstream File;
+    bool close = false, sign = false;
+
+
+    // Get the path for creating file from the user.
+    cin >> path;
+    if (path == "" || isFileExist(path)) {
+        cout << "invalid input" << endl;
+        return;
+    }
+
+    struct argsStruct arg;
+    arg.socket = sock;
+    arg.path = path;
+
+    // Create thread for each client.
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_t clientThread;
+    threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) &arg);
+    if (threadC) {
+        perror("Error creating thread");
     }
 }
 
@@ -257,11 +289,11 @@ int main(int argc, char **argv) {
     const char *ip_address = argv[1];
     const int port = getPort(argv);
 
-    vector<double> p, q;
-    bool isValid = true, isK = false, isDistance = false, isVector = false;
-    string input = "", arg = "", data = "", option = "";
+    string option = "";
     double numCheck = 0.0, validDistance = 0.0;
-    int countErrors = 0;
+    int countErrors = 0, threadC, read_bytes;
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
 
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -283,14 +315,13 @@ int main(int argc, char **argv) {
         return false;
     }
     // Menu
-    char buffer[4096] = " ";
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(sock, buffer, expected_data_len, 0);
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes <= 0) {
         cout << "Acceptance failed" << endl;
     } else {
         cout << buffer;
     }
+
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
         cin >> option;
