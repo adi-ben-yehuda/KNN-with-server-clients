@@ -75,9 +75,6 @@ void sendMenu(Command *options[5], int clientSocket) {
 }
 
 
-
-
-
 int main(int argc, char **argv) {
 
     // Check if the args are valid, if not we get out of the program.
@@ -89,7 +86,7 @@ int main(int argc, char **argv) {
     const int serverPort = atoi(argv[1]);
 
     int k = 0, i = 0, countErrors = 0, sent_bytes = 0;
-    string distance = "", error = "invalid input";
+    string distance = "", error = "invalid input\n";
     vector<double> p, q, r;
     bool isValid = true, isK = false, isDistance = false, isVector = false;
     char *token = NULL;
@@ -123,138 +120,57 @@ int main(int argc, char **argv) {
         perror("error listening to a socket");
     }
 
-//    while (true) {
-
-
-    // Create socket for a specific client.
-    struct sockaddr_in client_sin;
-    unsigned int addrLen = sizeof(client_sin);
-    int clientSocket = accept(serverSocket, (struct sockaddr *) &client_sin, &addrLen);
-
-    // Check if the creation of the socket succeeded.
-    if (clientSocket < 0) {
-        perror("error accepting client");
-    }
-
-    // The default values.
-    Data data = Data();
-    data.setSock(clientSocket);
-    Command *options[5];
-
-    options[0] = new UploadFile(&data);
-    options[1] = new Setting(&data);
-    options[2] = new Classify(&data);
-    options[3] = new Results(&data);
-    options[4] = new Download(&data);
-
     while (true) {
-        sendMenu(options, clientSocket);
 
-        // Get data from the clientSocket to buffer.
-        char buffer[4096] = " ";
-        int expectedDataLen = sizeof(buffer);
-        int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
+        // Create socket for a specific client.
+        struct sockaddr_in client_sin;
+        unsigned int addrLen = sizeof(client_sin);
+        int clientSocket = accept(serverSocket, (struct sockaddr *) &client_sin, &addrLen);
 
-        if (readBytes <= 0) {
-            isValid = false;
-        } else if (buffer[0] == '8' && buffer[1] == '\000') {
-            // The user enters 8 in the console.
-            close(clientSocket);
-            break;
-        } else {
-            if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
-                i = stoi(&buffer[0]) - 1;
-                options[i]->execute();
-            } else { // Print invalid input.
-                sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
-                // Check if the sending of the data succeeded.
-                if (sent_bytes < 0) {
-                    perror("error sending to client");
+        // Check if the creation of the socket succeeded.
+        if (clientSocket < 0) {
+            perror("error accepting client");
+        }
+
+        // The default values.
+        Data data = Data();
+        data.setSock(clientSocket);
+        Command *options[5];
+
+        options[0] = new UploadFile(&data);
+        options[1] = new Setting(&data);
+        options[2] = new Classify(&data);
+        options[3] = new Results(&data);
+        options[4] = new Download(&data);
+
+        while (true) {
+            sendMenu(options, clientSocket);
+
+            // Get data from the clientSocket to buffer.
+            char buffer[4096] = " ";
+            int expectedDataLen = sizeof(buffer);
+            int readBytes = recv(clientSocket, buffer, expectedDataLen, 0);
+
+            if (readBytes <= 0) {
+                isValid = false;
+            } else if (buffer[0] == '8' && buffer[1] == '\000') {
+                // The user enters 8 in the console.
+                close(clientSocket);
+                break;
+            } else {
+                if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
+                    i = stoi(&buffer[0]) - 1;
+                    options[i]->execute();
+                } else { // Print invalid input.
+                    sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
+                    // Check if the sending of the data succeeded.
+                    if (sent_bytes < 0) {
+                        perror("error sending to client");
+                    }
                 }
             }
-
-
         }
-//                string num = "";
-//                // Separate the buffer by spaces.
-//                token = strtok(buffer, " ");
-//                while (token != NULL) {
-//                    stringstream s(token);
-//                    // Check if the token is numeric.
-//                    if (isNumeric(token)) {
-//                        // After the distance comes the k.
-//                        if (countErrors == 1) {
-//                            k = stoi(token);
-//                            isK = true;
-//                            break;
-//                        } else {
-//                            // Add the number to the vector.
-//                            p.push_back(stod(token));
-//                            isVector = true;
-//                        }
-//                    } else if (s >> numCheck && s.eof()) { // The input is double or negative.
-//                        // After the distance comes the k, and it can't be a double or negative.
-//                        if (countErrors == 1) {
-//                            isValid = false;
-//                            break;
-//                        } else {
-//                            // Add the number to the vector.
-//                            p.push_back(stod(token));
-//                            isVector = true;
-//                        }
-//                    } else { // The data is string
-//                        countErrors++;
-//                        if (countErrors == 1) {
-//                            validDistance = getDistance(r, q, token);
-//                            // Check if the distance is valid algorithm.
-//                            if (validDistance != -1) {
-//                                distance = token;
-//                                isDistance = true;
-//                            } else {
-//                                isValid = false;
-//                                break;
-//                            }
-//                        } else { // That is, there are more than one time that we get a string.
-//                            isValid = false;
-//                            break;
-//                        }
-//                    }
-//                    token = strtok(NULL, " ");
-//                }
-//            }
-//
-//            // Check if the vector is empty.
-//            if (p.empty()) {
-//                isValid = false;
-//            }
-//
-//            // Check if the server does not get a vector, distance or k.
-//            if (!(isK && isDistance && isVector)) {
-//                sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
-//            } else if (!isValid) { // If the data we received from the client is invalid.
-//                sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
-//            } else { // If all data is valid, send the classification to the client.
-//                kHeap = getKNearestElements(fileName, p, distance, k);
-//                // That is, there was an error in the size of the vector or the data in the file is invalid.
-//                if (kHeap.getHeap().empty()) {
-//                    sent_bytes = send(clientSocket, error.c_str(), error.length(), 0);
-//                } else {
-//                    string common = getCommonType(kHeap);
-//                    sent_bytes = send(clientSocket, common.c_str(), common.length(), 0);
-//                }
-//            }
-//
-//            // Check if the sending of the data succeeded.
-//            if (sent_bytes < 0) {
-//                perror("error sending to client");
-//            }
-//
-//            isValid = true;
-//            countErrors = 0;
-//            p.clear();
     }
-//    }
-
     close(serverSocket);
     return 0;
 }
