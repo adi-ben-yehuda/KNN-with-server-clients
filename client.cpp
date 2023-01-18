@@ -41,9 +41,9 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    ////cin >> pathTrain;
-    //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
-    pathTrain = "iris_classified.csv";
+    //cin >> pathTrain;
+       pathTrain = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_classified.csv";
+    //pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -64,6 +64,7 @@ void option1(int sock) {
     }
     sendDataFile(sock, pathTrain);
 
+    memset(buffer, '\000', 4096);
     // Get "upload complete" and messageTest from server.
     read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
@@ -75,9 +76,9 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    ///////cin >> pathTest;
-    // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
-    pathTest = "iris_Unclassified.csv";
+    //cin >> pathTest;
+     pathTest = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_Unclassified.csv";
+    //pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
@@ -98,6 +99,7 @@ void option1(int sock) {
     }
     sendDataFile(sock, pathTest);
 
+    memset(buffer, '\000', 4096);
     // Get "upload complete" and the menu from server.
     read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
@@ -204,45 +206,20 @@ void option4(int sock) {
 }
 
 struct argsStruct {
-    int socket;
     string path;
+    string data;
 };
 
 
-void* writeToFile(void * arg){
+void* writeToFile(argsStruct * arg){
 
     struct argsStruct *args = (argsStruct  *) arg;
-    int read_bytes;
-    char buffer[4096] = " ";
-    int expected_data_len = sizeof(buffer);
     ofstream File;
-    bool close = false, sign = false;
-    int sock = args->socket;
     // Receive all the classifications from the server.
 
     File = createFile(args->path);
     if (File) {
-        // Get all the data.s
-        while (!close) {
-            read_bytes = recv(sock, buffer, expected_data_len, 0);
-
-            if (read_bytes <= 0) {
-                perror("error receiving from client");
-            } else {
-                for (int i = 0; i < 4096; ++i) {
-                    if (!sign && buffer[i] != '&') {
-                        File.put(buffer[i]);
-                    } else if (buffer[i] == '&') {
-                        sign = true;
-                    } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
-                        cout << buffer[i];
-                    } else if (buffer[i] == '\000') {
-                        close = true;
-                        break;
-                    }
-                }
-            }
-        }
+        File << args->data;
         File.close();
     }
     pthread_exit(NULL); // Close the thread.
@@ -250,11 +227,12 @@ void* writeToFile(void * arg){
 
 void option5(int sock) {
     string path = "";
-    int sent_bytes, read_bytes, threadC;
+    int sent_bytes, read_bytes, threadC, i = 0;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
     bool close = false, sign = false;
+    string data = "";
 
 
     // Get the path for creating file from the user.
@@ -264,15 +242,37 @@ void option5(int sock) {
         return;
     }
 
+// Receive all the classifications from the server.
+    while (!close) {
+        memset(buffer, '\000', 4096);
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+        if (read_bytes <= 0) {
+            perror("error receiving from client");
+        } else {
+            for (int i = 0; i < 4096; ++i) {
+                if (!sign && buffer[i] != '&') {
+                    data += buffer[i];
+                } else if (buffer[i] == '&') {
+                    sign = true;
+                } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
+                    cout << buffer[i];
+                } else if (buffer[i] == '\000') {
+                    close = true;
+                    break;
+                }
+            }
+        }
+    }
+
     struct argsStruct arg;
-    arg.socket = sock;
+    arg.data = data;
     arg.path = path;
 
     // Create thread for each client.
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_t clientThread;
-    threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) &arg);
+    threadC = pthread_create(&clientThread, NULL, writeToFile, &arg);
     if (threadC) {
         perror("Error creating thread");
     }
@@ -290,8 +290,7 @@ int main(int argc, char **argv) {
     const int port = getPort(argv);
 
     string option = "";
-    double numCheck = 0.0, validDistance = 0.0;
-    int countErrors = 0, threadC, read_bytes;
+    int threadC, read_bytes;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
 
