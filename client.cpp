@@ -42,8 +42,8 @@ void option1(int sock) {
 
     // Get the path of train file from the user.
     //cin >> pathTrain;
-       pathTrain = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_classified.csv";
-    //pathTrain = "iris_classified.csv";
+    //   pathTrain = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_classified.csv";
+    pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -77,8 +77,8 @@ void option1(int sock) {
 
     // Get the path of test file from the user.
     //cin >> pathTest;
-     pathTest = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_Unclassified.csv";
-    //pathTest = "iris_Unclassified.csv";
+     //pathTest = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_Unclassified.csv";
+    pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
@@ -205,15 +205,17 @@ void option4(int sock) {
     }
 }
 
-struct argsStruct {
+typedef struct {
     string path;
     string data;
-};
+}argsStruct;
 
 
-void* writeToFile(argsStruct * arg){
+void* writeToFile(void * parameter){
 
-    struct argsStruct *args = (argsStruct  *) arg;
+    argsStruct* args = (argsStruct*) parameter;
+
+    //vector<string> args;
     ofstream File;
     // Receive all the classifications from the server.
 
@@ -222,6 +224,7 @@ void* writeToFile(argsStruct * arg){
         File << args->data;
         File.close();
     }
+    delete args;
     pthread_exit(NULL); // Close the thread.
 }
 
@@ -264,15 +267,16 @@ void option5(int sock) {
         }
     }
 
-    struct argsStruct arg;
-    arg.data = data;
-    arg.path = path;
+    argsStruct* args = new argsStruct;
+    args->data = data;
+    args->path = path;
+
 
     // Create thread for each client.
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_t clientThread;
-    threadC = pthread_create(&clientThread, NULL, writeToFile, &arg);
+    threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) args);
     if (threadC) {
         perror("Error creating thread");
     }
