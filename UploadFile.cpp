@@ -74,7 +74,7 @@ void UploadFile::execute() {
             perror("error sending to client");
         }
 
-        memset(buffer, ' ', 4096);
+        memset(buffer, '\000', 4096);
         close = false;
 
         readBytes = recv(data->getSock(), buffer, expectedDataLen, 0);

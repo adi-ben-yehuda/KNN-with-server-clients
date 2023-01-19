@@ -144,7 +144,7 @@
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/UploadFile.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
-		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/server.cpp">
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/client.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/CMakeLists.txt">

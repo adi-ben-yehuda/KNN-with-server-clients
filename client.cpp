@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "File.h"
+#include <pthread.h>
 
 using namespace std;
 
@@ -40,8 +41,8 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    ////// cin >> pathTrain;
-    //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
+    //cin >> pathTrain;
+    //   pathTrain = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_classified.csv";
     pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
@@ -63,6 +64,7 @@ void option1(int sock) {
     }
     sendDataFile(sock, pathTrain);
 
+    memset(buffer, '\000', 4096);
     // Get "upload complete" and messageTest from server.
     read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
@@ -74,8 +76,8 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    ///// cin >> pathTest;
-    // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
+    //cin >> pathTest;
+     //pathTest = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_Unclassified.csv";
     pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
@@ -97,6 +99,7 @@ void option1(int sock) {
     }
     sendDataFile(sock, pathTest);
 
+    memset(buffer, '\000', 4096);
     // Get "upload complete" and the menu from server.
     read_bytes = recv(sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) { //  connection is closed
@@ -202,13 +205,38 @@ void option4(int sock) {
     }
 }
 
+typedef struct {
+    string path;
+    string data;
+}argsStruct;
+
+
+void* writeToFile(void * parameter){
+
+    argsStruct* args = (argsStruct*) parameter;
+
+    //vector<string> args;
+    ofstream File;
+    // Receive all the classifications from the server.
+
+    File = createFile(args->path);
+    if (File) {
+        File << args->data;
+        File.close();
+    }
+    delete args;
+    pthread_exit(NULL); // Close the thread.
+}
+
 void option5(int sock) {
     string path = "";
-    int sent_bytes, read_bytes;
+    int sent_bytes, read_bytes, threadC, i = 0;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
     bool close = false, sign = false;
+    string data = "";
+
 
     // Get the path for creating file from the user.
     cin >> path;
@@ -217,34 +245,43 @@ void option5(int sock) {
         return;
     }
 
-    // Receive all the classifications from the server.
-    File = createFile(path);
-    if (File) {
-        // Get all the data.s
-        while (!close) {
-            read_bytes = recv(sock, buffer, expected_data_len, 0);
-
-            if (read_bytes <= 0) {
-                perror("error receiving from client");
-            } else {
-                for (int i = 0; i < 4096; ++i) {
-                    if (!sign && buffer[i] != '&') {
-                        File.put(buffer[i]);
-                    } else if (buffer[i] == '&') {
-                        sign = true;
-                    } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
-                        cout << buffer[i];
-                    } else if (buffer[i] == '\000') {
-                        close = true;
-                        break;
-                    }
+// Receive all the classifications from the server.
+    while (!close) {
+        memset(buffer, '\000', 4096);
+        read_bytes = recv(sock, buffer, expected_data_len, 0);
+        if (read_bytes <= 0) {
+            perror("error receiving from client");
+        } else {
+            for (int i = 0; i < 4096; ++i) {
+                if (!sign && buffer[i] != '&') {
+                    data += buffer[i];
+                } else if (buffer[i] == '&') {
+                    sign = true;
+                } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
+                    cout << buffer[i];
+                } else if (buffer[i] == '\000') {
+                    close = true;
+                    break;
                 }
             }
         }
+    }
 
-        File.close();
+    argsStruct* args = new argsStruct;
+    args->data = data;
+    args->path = path;
+
+
+    // Create thread for each client.
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_t clientThread;
+    threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) args);
+    if (threadC) {
+        perror("Error creating thread");
     }
 }
+
 
 int main(int argc, char **argv) {
     // If the arguments are empty. or the port is invalid.
@@ -256,11 +293,10 @@ int main(int argc, char **argv) {
     const char *ip_address = argv[1];
     const int port = getPort(argv);
 
-    vector<double> p, q;
-    bool isValid = true, isK = false, isDistance = false, isVector = false;
-    string input = "", arg = "", data = "", option = "";
-    double numCheck = 0.0, validDistance = 0.0;
-    int countErrors = 0;
+    string option = "";
+    int threadC, read_bytes;
+    char buffer[4096] = " ";
+    int expected_data_len = sizeof(buffer);
 
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -282,17 +318,13 @@ int main(int argc, char **argv) {
         return false;
     }
     // Menu
-    char buffer[4096] = " ";
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) {
-        //  connection is closed
-        close(sock);
-    } else if (read_bytes < 0) {
+    read_bytes = recv(sock, buffer, expected_data_len, 0);
+    if (read_bytes <= 0) {
         cout << "Acceptance failed" << endl;
     } else {
         cout << buffer;
     }
+
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
         cin >> option;
@@ -311,107 +343,16 @@ int main(int argc, char **argv) {
             option4(sock);
         } else if (option == "5") {
             option5(sock);
+        } else if (option == "8") {
+            close(sock);
+            break;
+        } else {
+            read_bytes = recv(sock, buffer, expected_data_len, 0);
+            if (read_bytes <= 0) {
+                cout << "Acceptance failed" << endl;
+            } else {
+                cout << buffer;
+            }
         }
-
-//        p.clear();
-//        /* Get input from the user as a string that is separated by spaces. */
-//        getline(cin, input);
-//        /* If the input is entered .*/
-//        if (input == "") {
-//            cout << "invalid input" << endl;
-//            continue;
-//        }
-//
-//        // If the input is -1, close the client.
-//        if (input == "-1") {
-//            // Send the data that get from the console, to the server.
-//            int sent_bytes = send(sock, "0", 1, 0);
-//            if (sent_bytes < 0) {
-//                cout << "Sending failed" << endl;
-//            }
-//            close(sock);
-//            return 0;
-//        }
-//
-//        countErrors = 0;
-//        stringstream ss(input);
-//
-//        /* Split the input by spaces and save it in arg. */
-//        while (ss >> arg) {
-//            stringstream ss2(arg);
-//
-//            // Check if the input is numeric.
-//            if (isNumeric(arg)) {
-//                // After the distance comes the k.
-//                if (countErrors == 1) {
-//                    // Because the k is numeric, save it.
-//                    data += arg; // = k
-//                    isK = true;
-//                    /* The k should be in the end of the line.
-//                     * Check if there is another text after the k and print an error if yes. */
-//                    if (ss >> arg) {
-//                        cout << "invalid input" << endl;
-//                        isValid = false;
-//                        break;
-//                    }
-//                } else {
-//                    data += arg + " "; // = vector
-//                    isVector = true;
-//                }
-//            } else if (ss2 >> numCheck && ss2.eof()) { // The input is double or negative.
-//                // After the distance comes the k, and it can't be a double or negative.
-//                if (countErrors == 1) {
-//                    isValid = false;
-//                    break;
-//                } else {
-//                    data += arg + " "; // = vector
-//                    isVector = true;
-//                }
-//            } else { // The data is string.
-//                countErrors++;
-//                if (countErrors == 1) {
-//                    // If the vector is empty, print error.
-//                    if (data == "") {
-//                        isValid = false;
-//                        break;
-//                    } else {
-//                        validDistance = getDistance(p, q, arg);
-//                        // Check if the distance is valid algorithm.
-//                        if (validDistance != -1) {
-//                            data += arg + " "; // = distance
-//                            isDistance = true;
-//                        } else {
-//                            isValid = false;
-//                            break;
-//                        }
-//                    }
-//                } else { // There are more than one time that we get a string.
-//                    isValid = false;
-//                    break;
-//                }
-//            }
-//        }
-//
-//        // Check if the user does not enter a vector, distance or k.
-//        if (!(isK && isDistance && isVector)) {
-//            cout << "invalid input" << endl;
-//        } else if (isValid) {
-//            data += " ";
-//            // Send the data that get from the console, to the server.
-//            int sent_bytes = send(sock, data.c_str(), data.length(), 0);
-//            if (sent_bytes < 0) {
-//                cout << "Sending failed" << endl;
-//                continue;
-//            }
-
-
     }
-
-    data = "";
-    countErrors = 0;
-    isValid = true;
-    isK = false;
-    isDistance = false;
-    isVector = false;
-//    }
 }
