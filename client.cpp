@@ -42,8 +42,8 @@ void option1(int sock) {
 
     // Get the path of train file from the user.
     //cin >> pathTrain;
-    //   pathTrain = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_classified.csv";
-    pathTrain = "iris_classified.csv";
+       pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
+    //pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -77,8 +77,8 @@ void option1(int sock) {
 
     // Get the path of test file from the user.
     //cin >> pathTest;
-     //pathTest = "/home/shahar/Documents/advencd1/advanced_ex_4/iris_Unclassified.csv";
-    pathTest = "iris_Unclassified.csv";
+    pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
+   // pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
@@ -208,12 +208,12 @@ void option4(int sock) {
 typedef struct {
     string path;
     string data;
-}argsStruct;
+} argsStruct;
 
 
-void* writeToFile(void * parameter){
+void *writeToFile(void *parameter) {
 
-    argsStruct* args = (argsStruct*) parameter;
+    argsStruct *args = (argsStruct *) parameter;
 
     //vector<string> args;
     ofstream File;
@@ -228,24 +228,54 @@ void* writeToFile(void * parameter){
     pthread_exit(NULL); // Close the thread.
 }
 
+// Check if the end of the path is csv or txt
+bool checkEnd(string path) {
+    char *temp;
+    string end;
+    const int length = path.length();
+
+    // declaring character array (+1 for null terminator)
+    char *char_array = new char[length + 1];
+
+    // copying the contents of the string to char array
+    strcpy(char_array, path.c_str());
+
+    // Split the path according to .
+    char *token = strtok(char_array, ".");
+
+    while (token != NULL) {
+        temp = token;
+        token = strtok(NULL, ".");
+    }
+
+    end = temp;
+    if (end == "csv" || end == "txt") {
+        return true;
+    }
+    return false;
+}
+
 void option5(int sock) {
     string path = "";
     int sent_bytes, read_bytes, threadC, i = 0;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
-    bool close = false, sign = false;
+    bool close = false, sign = false, valid = true;
     string data = "";
 
-
     // Get the path for creating file from the user.
-    cin >> path;
-    if (path == "" || isFileExist(path)) {
+    getline(cin, path);
+    getline(cin, path);
+
+    // In case the path is empty or exists or doesn't end with csv or txt,
+    // print invalid input
+    if (path == "" || isFileExist(path) || !checkEnd(path)) {
         cout << "invalid input" << endl;
-        return;
+        valid = false;
     }
 
-// Receive all the classifications from the server.
+    // Receive all the classifications from the server.
     while (!close) {
         memset(buffer, '\000', 4096);
         read_bytes = recv(sock, buffer, expected_data_len, 0);
@@ -253,11 +283,14 @@ void option5(int sock) {
             perror("error receiving from client");
         } else {
             for (int i = 0; i < 4096; ++i) {
+                // Before the &, this is the data to write to the file.
                 if (!sign && buffer[i] != '&') {
                     data += buffer[i];
                 } else if (buffer[i] == '&') {
+                    // That is from now, will be the menu.
                     sign = true;
                 } else if (sign && buffer[i] != '&' && buffer[i] != '\000') {
+                    // Print the menu.
                     cout << buffer[i];
                 } else if (buffer[i] == '\000') {
                     close = true;
@@ -267,18 +300,20 @@ void option5(int sock) {
         }
     }
 
-    argsStruct* args = new argsStruct;
-    args->data = data;
-    args->path = path;
+    if (valid) {
+        argsStruct *args = new argsStruct;
+        args->data = data;
+        args->path = path;
 
 
-    // Create thread for each client.
-    pthread_attr_t attr;
-    pthread_attr_init(&attr);
-    pthread_t clientThread;
-    threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) args);
-    if (threadC) {
-        perror("Error creating thread");
+        // Create thread for each client.
+        pthread_attr_t attr;
+        pthread_attr_init(&attr);
+        pthread_t clientThread;
+        threadC = pthread_create(&clientThread, NULL, writeToFile, (void *) args);
+        if (threadC) {
+            perror("Error creating thread");
+        }
     }
 }
 
