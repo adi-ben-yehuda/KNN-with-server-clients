@@ -14,7 +14,6 @@ According to the choice of the client, the correct function executes.
 ## Table of contents
 * [General Information](#general-information)
 * [Installation](#installation)
-* [Project status](#project-status)
 * [Contact](#Contact)
 
 ## General Information
@@ -80,9 +79,6 @@ For example:
 ```
 ./client.out 127.0.0.1 12345
 ```
-
-## Project status 
-The project is in the beginning stages and will develop over time.
 
 ## Contact
 Created by @adi-ben-yehuda and @ShaharMosh - feel free to contact us!
