@@ -17,7 +17,10 @@ Then, it takes the K-Kathers ("similar") as input, checks what their labeling is
 
 option 1: upload files - in this option, the user enters a path of csv file that exists in his computer. The client sends the data of this file to the server. The server sends back to the client that the upload complete. This process will be twice - once of the train file and second one for the test file.
 
-Option 2: algorithm settings - 
+Option 2: algorithm settings - The server will send the current classifier parameter values which is the K parameter value and the current distance meter. 
+If the user presses enter, the parameters must be left unchanged. Otherwise, the user can enter new values separated by a space when K can have a range
+values of whole numbers and the distance matrix can have the following values: euclidean distance- AUC, taxicab geometry- MAN, Chebyshev distance- CHB, Canberra distance- CAN, or Minkowski distance- MIN.
+If everything is fine - return to the main menu. If the user entered an invalid value - the error message will be returned:
 
 Option 3: calssify data - 
 
