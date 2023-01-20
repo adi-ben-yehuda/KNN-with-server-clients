@@ -44,6 +44,8 @@ Option 5: download results - The behavior will be similar to that of option 4, e
 
 Option 8: Exit - The connection with the server will be closed and the client will be closed. The server will continue to the next connection with another client.
 
+After each option (except 8), the menu will be sent by the server to the client. The client will print it to the console.
+
 The connection between the server and this client will continue until the client requests to close the connection.
 
 ## Installation
