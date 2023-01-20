@@ -62,7 +62,7 @@ Before installing this project, you need to install on your computer:
 After it, run the following commands in the terminal:
 
 ```
-git clone https://github.com/adi-ben-yehuda/advanced_ex_3.git
+git clone https://github.com/adi-ben-yehuda/advanced_ex_4.git
 make
 ./server.out port
 ```
