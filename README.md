@@ -23,7 +23,7 @@ The client will receive as arguments, an IP (of the server) and a port (the same
 
 The server sends a menu to the client. The client prints it to the console. 
 The options in the menu are:
-# Option 1: upload files -
+### Option 1: upload files -
 The user will be given the option to type a path to a local csv file on his computer, and after pressing enter the client will send the contents of the file to the server. At the end of sending, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed.
 This process will be repeated twice, when the first time you receive a file for training the classifier and the second time a file for his exam. 
 Accordingly, for the first time will appear:
