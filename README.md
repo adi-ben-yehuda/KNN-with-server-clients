@@ -64,11 +64,11 @@ After it, run the following commands in the terminal:
 ```
 git clone https://github.com/adi-ben-yehuda/advanced_ex_3.git
 make
-./server.out file port
+./server.out port
 ```
 For example:
 ```
-./server.out iris_classified.csv 12345
+./server.out 12345
 ```
 Open a new terminal and run the following commands in this terminal:
 
