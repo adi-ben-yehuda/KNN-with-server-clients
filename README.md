@@ -17,6 +17,14 @@ Then, it takes the K-Kathers ("similar") as input, checks what their labeling is
 
 option 1: upload files - in this option, the user enters a path of csv file that exists in his computer. The client sends the data of this file to the server. The server sends back to the client that the upload complete. This process will be twice - once of the train file and second one for the test file.
 
+Option 2: algorithm settings - 
+
+Option 3: calssify data - 
+
+option 4: - display results - 
+
+Option 5: download results - 
+
 The server will receive as arguments, a file name (of the tagged vectors) and a port (the server will listen on this port number). If the server receives an invalid filename (such as a file that does not exist) or an invalid port (such as a port not between 1024 and 65535), the server will print "Invalid Arguments" to the terminal and close the server.
 The client will receive as arguments, an IP (of the server) and a port (the same port that the server listens to). The server and client need to be listening on the same port to connect to each other. If the client receives an invalid ip, the client will be closed. If the port is invalid (such as a port not between 1024 and 65535), the client will print "Invalid Arguments" to the terminal and close the client.
 
