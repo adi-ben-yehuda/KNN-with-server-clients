@@ -9,6 +9,7 @@ The options in the menu are:
 4. Display results - display the classifications in the console.
 5. Download results - write the classifications into a file.
 8. Exit - close the connection between the client and server.
+
 According to the choice of the client, the correct function executes.
 
 ## Table of contents
@@ -23,12 +24,12 @@ The client will receive as arguments, an IP (of the server) and a port (the same
 The server sends a menu to the client. The client prints it to the console. 
 The options in the menu are:
 #### Option 1 - upload files:
-The user will be given the option to type a path to a local csv file on his computer, and after pressing enter the client will send the contents of the file to the server. At the end of sending, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed.
+The user will be given a option to type a path of a local csv file on his computer, and after pressing enter the client will send the contents of the file to the server. At the end of sending, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed.
 This process will be repeated twice, when the first time you receive a file for training the classifier and the second time a file for his exam. 
 
 #### Option 2 - algorithm settings:
 The server will send the current classifier parameter values which is the K parameter value and the current distance meter. 
-If the user presses enter, the parameters must be left unchanged. That is, the default values are: k=5 and metric=AUC. Otherwise, the user can enter new values separated by a space when K can have a range
+If the user presses enter, the parameters will left unchanged. The default values in the beginning of the program are: k=5 and metric=AUC. Otherwise, the user can enter new values separated by a space when K can have a range
 values of whole numbers and the distance matrix can have the following values: euclidean distance- AUC, taxicab geometry- MAN, Chebyshev distance- CHB, Canberra distance- CAN, or Minkowski distance- MIN.
 If the user entered an invalid value - the error message will be returned: "invalid value for metric" or "invalid value for K" or both.
 
@@ -47,6 +48,8 @@ The behavior will be similar to that of option 4, except that instead of printin
 
 #### Option 8 - Exit:
 The connection with the server will be closed and the client will be closed.
+
+
 
 After each option (except 8), the menu will be sent by the server to the client. The client will print it to the console.
 The connection between the server and this client will continue until the client requests to close the connection.
