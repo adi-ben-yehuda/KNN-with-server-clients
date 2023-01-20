@@ -1,14 +1,15 @@
 # k-nearest-neighbors (KNN) with server and clients
 
 ## Introduction
-When the client connects to the server, the server sends him a menu of options. The client prints this menu to the console.
-The options are:
-1. upload files - upload classified and unclassified files.
-2. algorithm settings - set the k and metric distance.
-3. calssify data - classify the vectors in the unclassified file according to the classified file.
-4. display results - display the classifications in the console.
-5. download results - write the classifications into a file.
-8. exit - close the connection between the client and server.
+After connecting the client and server, the server sends a menu to the client.
+The options in the menu are:
+1. Upload files - upload classified and unclassified files.
+2. Algorithm settings - set k and metric distance.
+3. Calssify data - classify each vector in the unclassified file according to the classified file.
+4. Display results - display the classifications in the console.
+5. Download results - write the classifications into a file.
+8. Exit - close the connection between the client and server.
+According to the choice of the client, the correct function executes.
 
 ## Table of contents
 * [General Information](#general-information)
@@ -17,10 +18,13 @@ The options are:
 * [Contact](#Contact)
 
 ## General Information
-The server will receive as arguments a port (the server will listen on this port number). If the server receives an invalid port (such as a port not between 1024 and 65535), the server will print "Invalid Arguments" to the terminal and close the server.
-The client will receive as arguments, an IP (of the server) and a port (the same port that the server listens to). The server and client need to be listening on the same port to connect to each other. If the client receives an invalid ip, the client will be closed. If the port is invalid (such as a port not between 1024 and 65535), the client will print "Invalid Arguments" to the terminal and close the client.
+The server will receive as argument a port (the server will listen on this port number). If the server receives an invalid port (such as a port not between 1024 and 65535), the server will print "Invalid Arguments" to the terminal and close the server.
+The client will receive as arguments, an IP (of the server) and a port (the same port that the server listens to). The server and client need to be listening on the same port to connect to each other. If the client receives an invalid IP, the client will be closed. If the port is invalid (such as a port not between 1024 and 65535), the client will print "Invalid Arguments" to the terminal and close the client.
 
-option 1: upload files -The user will be given the option to type a path to a local csv file on his computer, and after pressing enter the client will send the contents of the file to the server. At the end of sending, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed.
+The server sends a menu to the client. The client prints it to the console. 
+The options in the menu are:
+# Option 1: upload files -
+The user will be given the option to type a path to a local csv file on his computer, and after pressing enter the client will send the contents of the file to the server. At the end of sending, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed.
 This process will be repeated twice, when the first time you receive a file for training the classifier and the second time a file for his exam. 
 Accordingly, for the first time will appear:
 Please upload your local train CSV file.
