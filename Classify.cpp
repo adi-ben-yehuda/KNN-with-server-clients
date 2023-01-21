@@ -70,7 +70,7 @@ void Classify::execute() {
     string temp = "", value = "", complete = "classifying data complete\n", message = "please upload data\n";
     char delim = ',', r = '\r';
     double num = 0.0, numCheck = 0.0;
-    int line = 0, sent_bytes = 0;
+    int line = 0;
     ifstream testFile;
 
     if (data->getIsUpload()) {
@@ -104,19 +104,11 @@ void Classify::execute() {
             }
         }
         // Send messageTrain to the client.
-        sent_bytes = send(data->getSock(), complete.c_str(), complete.length(), 0);
-        // Check if the sending of the data succeeded.
-        if (sent_bytes < 0) {
-            perror("error sending to client");
-        }
+        dio->write(complete);
         data->setIsClassify(true);
     } else {
         // Send messageTrain to the client.
-        sent_bytes = send(data->getSock(), message.c_str(), message.length(), 0);
-        // Check if the sending of the data succeeded.
-        if (sent_bytes < 0) {
-            perror("error sending to client");
-        }
+        dio->write(message);
     }
     data->setIsClassify(true);
 }

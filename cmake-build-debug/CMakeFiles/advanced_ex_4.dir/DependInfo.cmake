@@ -20,7 +20,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/shahar/Documents/advencd1/advanced_ex_4/Setting.cpp" "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Setting.cpp.o.d"
   "/home/shahar/Documents/advencd1/advanced_ex_4/SocketIO.cpp" "CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.o.d"
   "/home/shahar/Documents/advencd1/advanced_ex_4/UploadFile.cpp" "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o.d"
-  "/home/shahar/Documents/advencd1/advanced_ex_4/client.cpp" "CMakeFiles/advanced_ex_4.dir/client.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/client.cpp.o.d"
+  "/home/shahar/Documents/advencd1/advanced_ex_4/server.cpp" "CMakeFiles/advanced_ex_4.dir/server.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/server.cpp.o.d"
   )
 
 # Targets to which this target links.

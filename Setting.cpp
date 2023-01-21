@@ -22,24 +22,18 @@ string Setting::getDescription() {
 void Setting::execute() {
     string message = "The current KNN parameters are: K = " + to_string(data->getK())
                      + ", distance metric = " + data->getMetric() + "\n", kInvalid = "invalid value for K\n",
-            metricInvalid = "invalid value for metric\n", m = "invalid input\n", tempMetric;
+            metricInvalid = "invalid value for metric\n", error = "invalid input\n", tempMetric = "", content= "";
     char buffer[4096] = " ", *token = NULL;
-    int sent_bytes, read_bytes, count = 0, tempK;
-    int expected_data_len = sizeof(buffer);
+    int count = 0, tempK;
     bool kValid = true, mValid = true;
 
     // Send message to the client.
-    sent_bytes = send(data->getSock(), message.c_str(), message.length(), 0);
-    // Check if the sending of the data succeeded.
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
+    dio->write(message);
 
     // Receive the settings from the user.
-    read_bytes = recv(data->getSock(), buffer, expected_data_len, 0);
-    if (read_bytes <= 0) { //  connection is closed
-        perror("error receiving from client");
-    }
+    content = dio->read();
+    // copying the contents of the string to char array
+    strcpy(buffer, content.c_str());
 
     // The user wants to update the parameters.
     if (buffer[0] != '*') {
@@ -52,11 +46,7 @@ void Setting::execute() {
                     tempK = stoi(token);
                 } else {
                     // Send message to the client.
-                    sent_bytes = send(data->getSock(), kInvalid.c_str(), kInvalid.length(), 0);
-                    // Check if the sending of the data succeeded.
-                    if (sent_bytes < 0) {
-                        perror("error sending to client");
-                    }
+                    dio->write(kInvalid);
                     kValid = false;
                 }
                 count++;
@@ -65,21 +55,13 @@ void Setting::execute() {
                     tempMetric = token;
                 } else {
                     // Send message to the client.
-                    sent_bytes = send(data->getSock(), metricInvalid.c_str(), metricInvalid.length(), 0);
-                    // Check if the sending of the data succeeded.
-                    if (sent_bytes < 0) {
-                        perror("error sending to client");
-                    }
+                    dio->write(metricInvalid);
                     mValid = false;
                 }
                 count++;
             } else if (count > 1) {
                 // Send message to the client.
-                sent_bytes = send(data->getSock(), m.c_str(), m.length(), 0);
-                // Check if the sending of the data succeeded.
-                if (sent_bytes < 0) {
-                    perror("error sending to client");
-                }
+                dio->write(error);
                 mValid = false;
                 kValid = false;
             }
@@ -88,11 +70,7 @@ void Setting::execute() {
 
         if (count == 1) {
             // Send message to the client.
-            sent_bytes = send(data->getSock(), metricInvalid.c_str(), metricInvalid.length(), 0);
-            // Check if the sending of the data succeeded.
-            if (sent_bytes < 0) {
-                perror("error sending to client");
-            }
+            dio->write(metricInvalid);
             mValid = false;
         }
 

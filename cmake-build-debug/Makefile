@@ -417,29 +417,29 @@ UploadFile.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.s
 .PHONY : UploadFile.cpp.s
 
-client.o: client.cpp.o
-.PHONY : client.o
+server.o: server.cpp.o
+.PHONY : server.o
 
 # target to build an object file
-client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.o
-.PHONY : client.cpp.o
+server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.o
+.PHONY : server.cpp.o
 
-client.i: client.cpp.i
-.PHONY : client.i
+server.i: server.cpp.i
+.PHONY : server.i
 
 # target to preprocess a source file
-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.i
-.PHONY : client.cpp.i
+server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.i
+.PHONY : server.cpp.i
 
-client.s: client.cpp.s
-.PHONY : client.s
+server.s: server.cpp.s
+.PHONY : server.s
 
 # target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/client.cpp.s
-.PHONY : client.cpp.s
+server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/server.cpp.s
+.PHONY : server.cpp.s
 
 # Help Target
 help:
@@ -486,9 +486,9 @@ help:
 	@echo "... UploadFile.o"
 	@echo "... UploadFile.i"
 	@echo "... UploadFile.s"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
+	@echo "... server.o"
+	@echo "... server.i"
+	@echo "... server.s"
 .PHONY : help
 
 
