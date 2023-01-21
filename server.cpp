@@ -82,15 +82,16 @@ void *runClient(void *clientSocket) {
     string error = "invalid input\n";
 
     int clientSock = *(int *) clientSocket;
+    SocketIO * sio = new SocketIO(clientSock);
     Data data = Data();
     data.setSock(clientSock);
     Command *options[5];
 
-    options[0] = new UploadFile(&data);
-    options[1] = new Setting(&data);
-    options[2] = new Classify(&data);
-    options[3] = new Results(&data);
-    options[4] = new Download(&data);
+    options[0] = new UploadFile(&data, sio);
+    options[1] = new Setting(&data, sio);
+    options[2] = new Classify(&data,  sio);
+    options[3] = new Results(&data, sio);
+    options[4] = new Download(&data, sio);
 
     while (true) {
         // Send menu to the client.

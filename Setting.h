@@ -14,7 +14,7 @@ private:
     Data *data;
 
 public:
-    Setting(Data *data);
+    Setting(Data *data, DefaultIO * dio);
 
     string getDescription();
     void execute();

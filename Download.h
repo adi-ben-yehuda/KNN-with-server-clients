@@ -13,7 +13,7 @@ private:
     Data *data;
 
 public:
-    Download(Data *data);
+    Download(Data *data, DefaultIO * dio);
 
     string getDescription();
     void execute();

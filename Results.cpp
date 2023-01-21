@@ -1,9 +1,10 @@
 #include "Results.h"
 #include <netinet/in.h>
 
-Results::Results(Data *data) {
+Results::Results(Data *data, DefaultIO * dio) {
     description = "4. display results";
     this->data = data;
+    this->dio = dio;
 }
 
 string Results::getDescription() {

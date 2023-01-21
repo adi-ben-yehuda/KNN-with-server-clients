@@ -201,6 +201,30 @@ Data.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Data.cpp.s
 .PHONY : Data.cpp.s
 
+DefaultIO.o: DefaultIO.cpp.o
+.PHONY : DefaultIO.o
+
+# target to build an object file
+DefaultIO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/DefaultIO.cpp.o
+.PHONY : DefaultIO.cpp.o
+
+DefaultIO.i: DefaultIO.cpp.i
+.PHONY : DefaultIO.i
+
+# target to preprocess a source file
+DefaultIO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/DefaultIO.cpp.i
+.PHONY : DefaultIO.cpp.i
+
+DefaultIO.s: DefaultIO.cpp.s
+.PHONY : DefaultIO.s
+
+# target to generate assembly for a file
+DefaultIO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/DefaultIO.cpp.s
+.PHONY : DefaultIO.cpp.s
+
 Distance.o: Distance.cpp.o
 .PHONY : Distance.o
 
@@ -345,6 +369,30 @@ Setting.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/Setting.cpp.s
 .PHONY : Setting.cpp.s
 
+SocketIO.o: SocketIO.cpp.o
+.PHONY : SocketIO.o
+
+# target to build an object file
+SocketIO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.o
+.PHONY : SocketIO.cpp.o
+
+SocketIO.i: SocketIO.cpp.i
+.PHONY : SocketIO.i
+
+# target to preprocess a source file
+SocketIO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.i
+.PHONY : SocketIO.cpp.i
+
+SocketIO.s: SocketIO.cpp.s
+.PHONY : SocketIO.s
+
+# target to generate assembly for a file
+SocketIO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/advanced_ex_4.dir/build.make CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.s
+.PHONY : SocketIO.cpp.s
+
 UploadFile.o: UploadFile.cpp.o
 .PHONY : UploadFile.o
 
@@ -411,6 +459,9 @@ help:
 	@echo "... Data.o"
 	@echo "... Data.i"
 	@echo "... Data.s"
+	@echo "... DefaultIO.o"
+	@echo "... DefaultIO.i"
+	@echo "... DefaultIO.s"
 	@echo "... Distance.o"
 	@echo "... Distance.i"
 	@echo "... Distance.s"
@@ -429,6 +480,9 @@ help:
 	@echo "... Setting.o"
 	@echo "... Setting.i"
 	@echo "... Setting.s"
+	@echo "... SocketIO.o"
+	@echo "... SocketIO.i"
+	@echo "... SocketIO.s"
 	@echo "... UploadFile.o"
 	@echo "... UploadFile.i"
 	@echo "... UploadFile.s"

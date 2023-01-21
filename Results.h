@@ -11,7 +11,7 @@ class Results : public Command {
 private:
     Data *data;
 public:
-    Results(Data *data);
+    Results(Data *data, DefaultIO * dio);
     void execute();
     string getDescription();
     ~Results();

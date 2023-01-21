@@ -3,9 +3,10 @@
 
 using namespace std;
 
-Download::Download(Data *data) {
+Download::Download(Data *data, DefaultIO * dio) {
     description = "5. download results";
     this->data = data;
+    this->dio = dio;
 }
 
 string Download::getDescription() {

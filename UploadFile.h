@@ -10,7 +10,7 @@ private:
     Data *data;
 
 public:
-    UploadFile(Data *data);
+    UploadFile(Data *data, DefaultIO * dio);
     string getDescription();
     void execute();
     ~UploadFile();

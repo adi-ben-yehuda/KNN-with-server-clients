@@ -9,9 +9,10 @@
 
 using namespace std;
 
-Classify::Classify(Data *data) {
+Classify::Classify(Data *data, DefaultIO* dio) {
     description = "3. classify data";
     this->data = data;
+    this->dio = dio;
 }
 
 string Classify::getDescription() {

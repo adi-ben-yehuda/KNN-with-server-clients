@@ -2,13 +2,14 @@
 #define ADVANCED_EX_4_COMMAND_H
 
 #include <iostream>
-
+#include "SocketIO.h"
 using namespace std;
 
 class Command {
 
 protected:
     string description;
+    DefaultIO * dio;
 public:
     Command() {}
 

@@ -102,6 +102,12 @@
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Data.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/DefaultIO.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/DefaultIO.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Distance.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
@@ -136,6 +142,12 @@
 			<Option target="advanced_ex_4"/>
 		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Setting.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/SocketIO.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/SocketIO.h">
 			<Option target="advanced_ex_4"/>
 		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/UploadFile.cpp">

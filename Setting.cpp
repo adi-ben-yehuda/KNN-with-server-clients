@@ -7,9 +7,10 @@
 
 using namespace std;
 
-Setting::Setting(Data *data) {
+Setting::Setting(Data *data, DefaultIO * dio) {
     description = "2. algorithm settings";
     this->data = data;
+    this->dio = dio;
 
 }
 
