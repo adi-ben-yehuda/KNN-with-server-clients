@@ -42,8 +42,8 @@ void option1(int sock) {
 
     // Get the path of train file from the user.
     //cin >> pathTrain;
-       pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
-    //pathTrain = "iris_classified.csv";
+    //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
+    pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -77,8 +77,8 @@ void option1(int sock) {
 
     // Get the path of test file from the user.
     //cin >> pathTest;
-    pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
-   // pathTest = "iris_Unclassified.csv";
+   // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
+    pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {

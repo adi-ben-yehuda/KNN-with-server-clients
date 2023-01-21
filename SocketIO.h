@@ -12,7 +12,7 @@ public:
     SocketIO(int sock);
     string read();
     void write (string data);
-    ~SocketIO();
+    ~SocketIO(){}
 
 };
 

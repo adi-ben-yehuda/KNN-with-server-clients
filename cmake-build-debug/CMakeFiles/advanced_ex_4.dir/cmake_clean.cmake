@@ -23,8 +23,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/advanced_ex_4.dir/SocketIO.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o"
   "CMakeFiles/advanced_ex_4.dir/UploadFile.cpp.o.d"
-  "CMakeFiles/advanced_ex_4.dir/client.cpp.o"
-  "CMakeFiles/advanced_ex_4.dir/client.cpp.o.d"
+  "CMakeFiles/advanced_ex_4.dir/server.cpp.o"
+  "CMakeFiles/advanced_ex_4.dir/server.cpp.o.d"
   "advanced_ex_4"
   "advanced_ex_4.pdb"
 )
