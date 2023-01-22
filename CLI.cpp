@@ -41,7 +41,7 @@ bool CLI::optionIsNumber(string buffer) {
 }
 
 void CLI::start() {
-    int sent_bytes = 0, readBytes = 0, i = 0;
+    int i = 0;
     string error = "invalid input\n", content= "";
 
     while (true) {
@@ -66,4 +66,8 @@ void CLI::start() {
             }
         }
     }
+}
+CLI::~CLI() {
+    delete data;
+    delete dio;
 }

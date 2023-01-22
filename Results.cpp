@@ -42,4 +42,7 @@ void Results::execute() {
 }
 
 /* Destructor. */
-Results::~Results() {}
+Results::~Results() {
+    delete data;
+    delete dio;
+}

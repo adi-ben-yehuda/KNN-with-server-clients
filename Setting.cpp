@@ -82,4 +82,7 @@ void Setting::execute() {
 }
 
 /* Destructor. */
-Setting::~Setting() {}
+Setting::~Setting() {
+    delete data;
+    delete dio;
+}

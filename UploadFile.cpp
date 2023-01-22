@@ -98,4 +98,7 @@ void UploadFile::execute() {
 
 
 /* Destructor. */
-UploadFile::~UploadFile() {}
+UploadFile::~UploadFile() {
+    delete data;
+    delete dio;
+}

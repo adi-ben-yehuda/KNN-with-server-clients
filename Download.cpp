@@ -40,4 +40,7 @@ void Download::execute() {
 }
 
 /* Destructor. */
-Download::~Download() {}
+Download::~Download() {
+    delete data;
+    delete dio;
+}
