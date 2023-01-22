@@ -1,7 +1,7 @@
 SH = bash
-CFLAGS = -g -pthread
+CFLAGS = -g
 LDFLAGS = -lm
-CC = g++
+CC = g++ -pthread
 
 all: server.out client.out
 
