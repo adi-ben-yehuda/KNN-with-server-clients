@@ -114,4 +114,7 @@ void Classify::execute() {
 }
 
 /* Destructor. */
-Classify::~Classify() {}
+Classify::~Classify() {
+    delete data;
+    delete dio;
+}

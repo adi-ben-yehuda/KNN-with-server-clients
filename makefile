@@ -1,5 +1,5 @@
 SH = bash
-CFLAGS = -g
+CFLAGS = -g -pthread
 LDFLAGS = -lm
 CC = g++
 

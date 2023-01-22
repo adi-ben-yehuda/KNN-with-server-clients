@@ -20,7 +20,7 @@ public:
     CLI(int sock);
 
     void start();
-    ~CLI(){}
+    ~CLI();
 };
 
 
