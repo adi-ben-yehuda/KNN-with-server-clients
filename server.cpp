@@ -4,31 +4,16 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <string.h>
-#include <vector>
 #include <cmath>
-#include <map>
 #include "File.h"
-#include "Command.h"
-#include "UploadFile.h"
-#include "Results.h"
-#include "Classify.h"
-#include "Setting.h"
-#include "Download.h"
-#include "Data.h"
+#include "CLI.h"
 #include <bits/stdc++.h>
 #include <pthread.h>
 
 using namespace std;
 
 
-/* The function gets string of the user input and checks if it is numeric. */
-bool optionIsNumber(string buffer) {
-    char opt = buffer[0];
-    if ((opt == '1' || opt == '2' || opt == '3' || opt == '4' || opt == '5') && buffer[1] == '\000') {
-        return true;
-    }
-    return false;
-}
+
 
 /* Function that get the port as an argument.
  * Check if it is number and and if it is in the valid range.*/
@@ -59,67 +44,15 @@ bool argsIsValid(int argc, char **argv) {
     return true;
 }
 
-// The function send to the client the menu.
-void sendMenu(Command *options[5], int clientSocket) {
-    string desc;
-    int sent_bytes;
 
-    desc = "Welcome to the KNN Classifier Server. Please choose an option:\n";
-    for (int i = 0; i < 5; ++i) {
-        desc += options[i]->getDescription() + "\n";
-    }
-    sent_bytes = send(clientSocket, desc.c_str(), desc.length(), 0);
-
-    // Check if the sending of the data succeeded.
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
-}
 
 // The function get clientSocket. According to the option from the client, run the correct algorithm.
 void *runClient(void *clientSocket) {
-    int sent_bytes = 0, readBytes = 0, i = 0;
-    string error = "invalid input\n";
 
-    int clientSock = *(int *) clientSocket;
-    SocketIO * sio = new SocketIO(clientSock);
-    Data data = Data();
-    data.setSock(clientSock);
-    Command *options[5];
 
-    options[0] = new UploadFile(&data, sio);
-    options[1] = new Setting(&data, sio);
-    options[2] = new Classify(&data,  sio);
-    options[3] = new Results(&data, sio);
-    options[4] = new Download(&data, sio);
+    CLI cli = CLI(*(int *)clientSocket);
+    cli.start();
 
-    while (true) {
-        // Send menu to the client.
-        sendMenu(options, clientSock);
-
-        // Get data from the clientSocket to buffer.
-        char buffer[4096] = " ";
-        int expectedDataLen = sizeof(buffer);
-        readBytes = recv(clientSock, buffer, expectedDataLen, 0);
-        if (readBytes <= 0) {
-            perror("error reading from client");
-        } else if (buffer[0] == '8' && buffer[1] == '\000') {
-            // The user enters 8 in the console so close the connection with the client.
-            close(clientSock);
-            break;
-        } else {
-            if (optionIsNumber(buffer)) { // Check if the option is in the range 1-5.
-                i = stoi(&buffer[0]) - 1;
-                options[i]->execute();
-            } else { // Print invalid input.
-                sent_bytes = send(clientSock, error.c_str(), error.length(), 0);
-                // Check if the sending of the data succeeded.
-                if (sent_bytes < 0) {
-                    perror("error sending to client");
-                }
-            }
-        }
-    }
     pthread_exit(NULL); // Close the thread.
 }
 

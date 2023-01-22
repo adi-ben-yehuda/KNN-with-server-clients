@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/CLI.cpp">
+			<Option target="advanced_ex_4"/>
+		</Unit>
+		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/CLI.h">
+			<Option target="advanced_ex_4"/>
+		</Unit>
 		<Unit filename="/home/shahar/Documents/advencd1/advanced_ex_4/Classify.cpp">
 			<Option target="advanced_ex_4"/>
 		</Unit>
