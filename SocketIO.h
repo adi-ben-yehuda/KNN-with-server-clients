@@ -10,9 +10,12 @@ private:
 
 public:
     SocketIO(int sock);
+
     string read();
-    void write (string data);
-    ~SocketIO(){}
+
+    void write(string data);
+
+    ~SocketIO() {}
 
 };
 

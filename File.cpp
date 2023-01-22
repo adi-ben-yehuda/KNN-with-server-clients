@@ -28,11 +28,13 @@ bool isFileExist(string fileName) {
     return false;
 }
 
+// Create a ew file according to the file name.
 ofstream createFile(string fileName) {
     ofstream File(fileName);
     return File;
 }
 
+// Send the data from the file.
 void sendDataFile(int sock, string path) {
     string temp = "", data = "";
     ifstream file;

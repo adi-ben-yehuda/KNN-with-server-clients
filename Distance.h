@@ -17,6 +17,7 @@ double minkowskiDistance(vector<double> p, vector<double> q);
 double euclideanDistance(vector<double> p, vector<double> q);
 
 double getDistance(vector<double> p, vector<double> q, string distType);
+
 bool isDistanceValid(string distType);
 
 #endif

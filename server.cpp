@@ -12,9 +12,6 @@
 
 using namespace std;
 
-
-
-
 /* Function that get the port as an argument.
  * Check if it is number and and if it is in the valid range.*/
 int getPort(char **argv) {
@@ -45,12 +42,9 @@ bool argsIsValid(int argc, char **argv) {
 }
 
 
-
 // The function get clientSocket. According to the option from the client, run the correct algorithm.
 void *runClient(void *clientSocket) {
-
-
-    CLI cli = CLI(*(int *)clientSocket);
+    CLI cli = CLI(*(int *) clientSocket);
     cli.start();
 
     pthread_exit(NULL); // Close the thread.

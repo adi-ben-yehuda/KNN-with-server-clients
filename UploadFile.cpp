@@ -6,7 +6,7 @@
 
 using namespace std;
 
-UploadFile::UploadFile(Data *data, DefaultIO * dio) {
+UploadFile::UploadFile(Data *data, DefaultIO *dio) {
     description = "1. upload an unclassified csv data file";
     this->data = data;
     this->dio = dio;

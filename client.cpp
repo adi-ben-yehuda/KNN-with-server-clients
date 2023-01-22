@@ -42,8 +42,6 @@ void option1(int sock) {
 
     // Get the path of train file from the user.
     cin >> pathTrain;
-    //   pathTrain = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_classified.csv";
-    //pathTrain = "iris_classified.csv";
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -77,8 +75,6 @@ void option1(int sock) {
 
     // Get the path of test file from the user.
     cin >> pathTest;
-   // pathTest = "/home/adi/Documents/advance_programming/advanced_ex_4/iris_Unclassified.csv";
-    //pathTest = "iris_Unclassified.csv";
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
@@ -196,7 +192,7 @@ void option4(int sock) {
         } else {
             for (int i = 0; i < 4096; ++i) {
                 if (buffer[i] != '&' && buffer[i] != '\000') {
-                    data+= buffer[i];
+                    data += buffer[i];
                 } else if (buffer[i] == '\000') {
                     close = true;
                     break;
@@ -212,20 +208,17 @@ typedef struct {
     string data;
 } argsStruct;
 
-
+// Write the data to a file that exists in the path.
 void *writeToFile(void *parameter) {
-
     argsStruct *args = (argsStruct *) parameter;
-
-    //vector<string> args;
     ofstream File;
-    // Receive all the classifications from the server.
 
     File = createFile(args->path);
     if (File) {
         File << args->data;
         File.close();
     }
+
     delete args;
     pthread_exit(NULL); // Close the thread.
 }
@@ -259,7 +252,7 @@ bool checkEnd(string path) {
 
 void option5(int sock) {
     string path = "";
-    int sent_bytes, read_bytes, threadC, i = 0;
+    int sent_bytes, read_bytes, threadC;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
@@ -307,7 +300,6 @@ void option5(int sock) {
         args->data = data;
         args->path = path;
 
-
         // Create thread for each client.
         pthread_attr_t attr;
         pthread_attr_init(&attr);
@@ -318,7 +310,6 @@ void option5(int sock) {
         }
     }
 }
-
 
 int main(int argc, char **argv) {
     // If the arguments are empty. or the port is invalid.
@@ -334,7 +325,6 @@ int main(int argc, char **argv) {
     int threadC, read_bytes;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
-
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     // Check if the creation of the socket succeeded.
@@ -385,6 +375,7 @@ int main(int argc, char **argv) {
             close(sock);
             break;
         } else {
+            // recieve invalid option message.
             read_bytes = recv(sock, buffer, expected_data_len, 0);
             if (read_bytes <= 0) {
                 cout << "Acceptance failed" << endl;

@@ -9,16 +9,17 @@
 
 CLI::CLI(int sock) {
     this->sock = sock;
-    SocketIO * sio = new SocketIO(sock);
-    this->dio =  sio;
+    SocketIO *sio = new SocketIO(sock);
+    this->dio = sio;
     this->data = new Data();
 
     options[0] = new UploadFile(data, sio);
     options[1] = new Setting(data, sio);
-    options[2] = new Classify(data,  sio);
+    options[2] = new Classify(data, sio);
     options[3] = new Results(data, sio);
     options[4] = new Download(data, sio);
 }
+
 // The function send to the client the menu.
 void CLI::sendMenu() {
     string desc;
@@ -29,7 +30,6 @@ void CLI::sendMenu() {
     }
     this->dio->write(desc);
 }
-
 
 /* The function gets string of the user input and checks if it is numeric. */
 bool CLI::optionIsNumber(string buffer) {
@@ -42,7 +42,7 @@ bool CLI::optionIsNumber(string buffer) {
 
 void CLI::start() {
     int i = 0;
-    string error = "invalid input\n", content= "";
+    string error = "invalid input\n", content = "";
 
     while (true) {
         // Send menu to the client.
@@ -67,6 +67,7 @@ void CLI::start() {
         }
     }
 }
+
 CLI::~CLI() {
     delete data;
     delete dio;
