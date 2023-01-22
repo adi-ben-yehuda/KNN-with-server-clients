@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/shahar/Documents/advencd1/advanced_ex_4/CLI.cpp" "CMakeFiles/advanced_ex_4.dir/CLI.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/CLI.cpp.o.d"
   "/home/shahar/Documents/advencd1/advanced_ex_4/Classify.cpp" "CMakeFiles/advanced_ex_4.dir/Classify.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Classify.cpp.o.d"
   "/home/shahar/Documents/advencd1/advanced_ex_4/Command.cpp" "CMakeFiles/advanced_ex_4.dir/Command.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Command.cpp.o.d"
   "/home/shahar/Documents/advencd1/advanced_ex_4/Data.cpp" "CMakeFiles/advanced_ex_4.dir/Data.cpp.o" "gcc" "CMakeFiles/advanced_ex_4.dir/Data.cpp.o.d"

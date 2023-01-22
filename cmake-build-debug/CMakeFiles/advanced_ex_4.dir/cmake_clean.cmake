@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/advanced_ex_4.dir/CLI.cpp.o"
+  "CMakeFiles/advanced_ex_4.dir/CLI.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/Classify.cpp.o"
   "CMakeFiles/advanced_ex_4.dir/Classify.cpp.o.d"
   "CMakeFiles/advanced_ex_4.dir/Command.cpp.o"

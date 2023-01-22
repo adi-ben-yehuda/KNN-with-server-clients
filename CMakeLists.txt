@@ -26,4 +26,4 @@ add_executable(advanced_ex_4
         Download.cpp
         Download.h
         Data.h
-        Data.cpp DefaultIO.cpp DefaultIO.h SocketIO.cpp SocketIO.h)
+        Data.cpp DefaultIO.cpp DefaultIO.h SocketIO.cpp SocketIO.h CLI.cpp CLI.h)

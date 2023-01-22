@@ -6,7 +6,6 @@ Data::Data() {
     this->isTest = false;
     this->isTrain = false;
     this->isClassify = false;
-    this->sock = 0;
     map<int, string> classifications;
 }
 
@@ -38,10 +37,6 @@ string Data::getMetric() {
     return metric;
 }
 
-int Data::getSock() {
-    return sock;
-}
-
 void Data::addClassifications(pair<int, string> classify) {
     this->classifications.insert(classify);
 }
@@ -64,8 +59,4 @@ void Data::setK(int k) {
 
 void Data::setMetric(string metric) {
     this->metric = metric;
-}
-
-void Data::setSock(int sock) {
-    this->sock = sock;
 }
