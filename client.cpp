@@ -181,20 +181,22 @@ void option3(int sock) {
 }
 
 void option4(int sock) {
-    char buffer[4096] = " ";
+    char buffer[4096] = "\000";
     int expected_data_len = sizeof(buffer);
     int read_bytes;
     bool close = false;
+    string data = "";
 
     // Get all the classification from the server.
     while (!close) {
+        memset(buffer, '\000', 4096);
         read_bytes = recv(sock, buffer, expected_data_len, 0);
         if (read_bytes <= 0) {
             perror("error receiving from client");
         } else {
             for (int i = 0; i < 4096; ++i) {
                 if (buffer[i] != '&' && buffer[i] != '\000') {
-                    cout << buffer[i];
+                    data+= buffer[i];
                 } else if (buffer[i] == '\000') {
                     close = true;
                     break;
@@ -202,6 +204,7 @@ void option4(int sock) {
             }
         }
     }
+    cout << data;
 }
 
 typedef struct {
@@ -361,6 +364,7 @@ int main(int argc, char **argv) {
 
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
+        // Get the path for creating file from the user.
         cin >> option;
         // Send the data that get from the console, to the server.
         int sent_bytes = send(sock, option.c_str(), option.length(), 0);
@@ -388,5 +392,6 @@ int main(int argc, char **argv) {
                 cout << buffer;
             }
         }
+        option = "";
     }
 }
