@@ -17,6 +17,4 @@ void sendDataFile(int sock, string path);
 
 ofstream createFile(string fileName);
 
-
-
 #endif

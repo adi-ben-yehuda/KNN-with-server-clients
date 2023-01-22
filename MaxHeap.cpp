@@ -4,7 +4,6 @@
 #include <queue>
 #include <tuple>
 
-
 using namespace std;
 
 /* The function get the distance, type of vector and k.
@@ -24,7 +23,6 @@ void MaxHeap::addToHeap(double distance, string type, int k) {
         heap.push(element);
     }
 }
-
 
 /* Return the heap.*/
 priority_queue<tuple<double, string>, vector<tuple<double, string>>, Comparator> MaxHeap::getHeap() {

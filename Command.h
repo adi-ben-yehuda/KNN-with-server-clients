@@ -3,18 +3,21 @@
 
 #include <iostream>
 #include "SocketIO.h"
+
 using namespace std;
 
 class Command {
 
 protected:
     string description;
-    DefaultIO * dio;
+    DefaultIO *dio;
 public:
     Command() {}
 
     virtual void execute() = 0;
+
     virtual string getDescription() { return description; }
+
     virtual ~Command() {}
 };
 

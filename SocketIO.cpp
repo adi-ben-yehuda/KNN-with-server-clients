@@ -22,7 +22,7 @@ string SocketIO::read() {
     return data;
 }
 
-void SocketIO::write(string data){
+void SocketIO::write(string data) {
     int sent_bytes = send(socket, data.c_str(), data.length(), 0);
     if (sent_bytes < 0) {
         perror("Sending failed");

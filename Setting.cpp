@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Setting::Setting(Data *data, DefaultIO * dio) {
+Setting::Setting(Data *data, DefaultIO *dio) {
     description = "2. algorithm settings";
     this->data = data;
     this->dio = dio;
@@ -18,11 +18,10 @@ string Setting::getDescription() {
     return description;
 }
 
-
 void Setting::execute() {
     string message = "The current KNN parameters are: K = " + to_string(data->getK())
                      + ", distance metric = " + data->getMetric() + "\n", kInvalid = "invalid value for K\n",
-            metricInvalid = "invalid value for metric\n", error = "invalid input\n", tempMetric = "", content= "";
+            metricInvalid = "invalid value for metric\n", error = "invalid input\n", tempMetric = "", content = "";
     char buffer[4096] = " ", *token = NULL;
     int count = 0, tempK;
     bool kValid = true, mValid = true;

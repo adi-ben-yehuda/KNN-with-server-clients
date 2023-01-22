@@ -61,6 +61,7 @@ void Data::setMetric(string metric) {
     this->metric = metric;
 }
 
-void Data::removeClassifications(){
+// Remove all the elements form the map.
+void Data::removeClassifications() {
     this->classifications.clear();
 }
