@@ -1,15 +1,13 @@
-#include <fstream>
 #include <vector>
 #include <sstream>
 #include "Classify.h"
 #include "Data.h"
 #include "File.h"
-#include <netinet/in.h>
 #include <bits/stdc++.h>
 
 using namespace std;
 
-Classify::Classify(Data *data, DefaultIO* dio) {
+Classify::Classify(Data *data, DefaultIO *dio) {
     description = "3. classify data";
     this->data = data;
     this->dio = dio;
@@ -74,6 +72,7 @@ void Classify::execute() {
     ifstream testFile;
 
     if (data->getIsUpload()) {
+        data->removeClassifications();
         testFile.open("test.csv");
         // Read the Data from the test file as double Vector.
         while (getline(testFile, temp)) {

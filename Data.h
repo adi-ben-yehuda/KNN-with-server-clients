@@ -30,6 +30,8 @@ public:
     void setK(int K);
     void setMetric(string metric);
     void addClassifications(pair<int, string> classify);
+    void removeClassifications();
+
     void setIsTrain(bool isTrain);
     void setIsTest(bool isTest);
     void setIsClassify(bool isClassify);

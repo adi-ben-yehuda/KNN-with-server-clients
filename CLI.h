@@ -8,18 +8,20 @@
 
 class CLI {
 private:
-    DefaultIO* dio;
-    Data* data;
-    Command* options[5];
+    DefaultIO *dio;
+    Data *data;
+    Command *options[5];
     int sock;
 
     void sendMenu();
+
     bool optionIsNumber(string buffer);
 
 public:
     CLI(int sock);
 
     void start();
+
     ~CLI();
 };
 

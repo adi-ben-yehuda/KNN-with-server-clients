@@ -60,3 +60,7 @@ void Data::setK(int k) {
 void Data::setMetric(string metric) {
     this->metric = metric;
 }
+
+void Data::removeClassifications(){
+    this->classifications.clear();
+}

@@ -11,8 +11,10 @@ private:
     Data *data;
 
 public:
-    Classify(Data *data, DefaultIO* dio);
+    Classify(Data *data, DefaultIO *dio);
+
     string getDescription();
+
     void execute();
 
     ~Classify();
