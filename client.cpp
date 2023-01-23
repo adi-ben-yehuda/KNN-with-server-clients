@@ -8,6 +8,7 @@
 #include "File.h"
 #include <pthread.h>
 
+
 using namespace std;
 
 /* Function that get the port as an argument.
@@ -41,7 +42,7 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    cin >> pathTrain;
+    getline(cin,pathTrain);
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -74,7 +75,8 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    cin >> pathTest;
+    getline(cin,pathTest);
+
 
     // If the pathTest is empty or invalid path.
     if (pathTest == "" || !isFileExist(pathTest)) {
@@ -123,7 +125,6 @@ void option2(int sock) {
     }
 
     // Get the parameters from the console.
-    getline(cin, parameters);
     getline(cin, parameters);
 
     if (parameters != "") {
@@ -252,7 +253,7 @@ bool checkEnd(string path) {
 
 void option5(int sock) {
     string path = "";
-    int sent_bytes, read_bytes, threadC;
+    int read_bytes, threadC;
     char buffer[4096] = " ";
     int expected_data_len = sizeof(buffer);
     ofstream File;
@@ -260,7 +261,6 @@ void option5(int sock) {
     string data = "";
 
     // Get the path for creating file from the user.
-    getline(cin, path);
     getline(cin, path);
 
     // In case the path is empty or exists or doesn't end with csv or txt,
@@ -320,11 +320,9 @@ int main(int argc, char **argv) {
 
     const char *ip_address = argv[1];
     const int port = getPort(argv);
-
-    string option = "";
-    int threadC, read_bytes;
+    string option;
     char buffer[4096] = " ";
-    int expected_data_len = sizeof(buffer);
+    int read_bytes, expected_data_len = sizeof(buffer);
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     // Check if the creation of the socket succeeded.
@@ -354,35 +352,36 @@ int main(int argc, char **argv) {
 
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
-        // Get the path for creating file from the user.
-        cin >> option;
-        // Send the data that get from the console, to the server.
-        int sent_bytes = send(sock, option.c_str(), option.length(), 0);
-        if (sent_bytes < 0) {
-            cout << "Sending failed" << endl;
-        }
-        if (option == "1") {
-            option1(sock);
-        } else if (option == "2") {
-            option2(sock);
-        } else if (option == "3") {
-            option3(sock);
-        } else if (option == "4") {
-            option4(sock);
-        } else if (option == "5") {
-            option5(sock);
-        } else if (option == "8") {
-            close(sock);
-            break;
-        } else {
-            // recieve invalid option message.
-            read_bytes = recv(sock, buffer, expected_data_len, 0);
-            if (read_bytes <= 0) {
-                cout << "Acceptance failed" << endl;
-            } else {
-                cout << buffer;
+            option = cin.get();
+            cin.ignore(256, '\n');
+            
+            // Send the data that get from the console, to the server.
+            int sent_bytes = send(sock, option.c_str(), option.length(), 0);
+            if (sent_bytes < 0) {
+                cout << "Sending failed" << endl;
             }
-        }
-        option = "";
+            if (option == "1") {
+                option1(sock);
+            } else if (option == "2") {
+                option2(sock);
+            } else if (option == "3") {
+                option3(sock);
+            } else if (option == "4") {
+                option4(sock);
+            } else if (option == "5") {
+                option5(sock);
+            } else if (option == "8") {
+                close(sock);
+                break;
+            } else {
+                cout << "else" << endl;
+                // recieve invalid option message.
+                read_bytes = recv(sock, buffer, expected_data_len, 0);
+                if (read_bytes <= 0) {
+                    cout << "Acceptance failed" << endl;
+                } else {
+                    cout << buffer;
+                }
+            }
     }
 }
