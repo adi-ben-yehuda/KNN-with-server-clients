@@ -164,17 +164,6 @@ void option3(int sock) {
     } else {
         cout << buffer;
     }
-
-    // Receive message from the server: complete or upload data.
-    read_bytes = recv(sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) { //  connection is closed
-        close(sock);
-    } else if (read_bytes < 0) {
-        cout << "Acceptance failed" << endl;
-    } else {
-        cout << buffer;
-    }
-
 }
 
 void option4(int sock) {
@@ -354,7 +343,7 @@ int main(int argc, char **argv) {
     while (true) {
             option = cin.get();
             cin.ignore(256, '\n');
-            
+
             // Send the data that get from the console, to the server.
             int sent_bytes = send(sock, option.c_str(), option.length(), 0);
             if (sent_bytes < 0) {
