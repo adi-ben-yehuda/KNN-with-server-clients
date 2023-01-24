@@ -17,7 +17,6 @@ string UploadFile::getDescription() {
 }
 
 void UploadFile::execute() {
-    ofstream File;
     string messageTrain = "Please upload your local train CSV file.\n",
             messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.\n", content = "";
     char buffer[4096] = "\000";
@@ -31,7 +30,7 @@ void UploadFile::execute() {
     strcpy(buffer, content.c_str());
 
     if (buffer[0] != '*') { // valid train
-        File = createFile("train.csv");
+        ofstream File("train.csv");
         if (File) {
             // Get all the data.s
             while (!close) {
@@ -70,7 +69,7 @@ void UploadFile::execute() {
             strcpy(buffer, content.c_str());
             firstTime = true;
             if (buffer[0] != '*') { // valid train
-                File = createFile("test.csv");
+                ofstream File2("train.csv");
                 if (File) {
                     // Get all the data.s
                     while (!close) {
@@ -88,12 +87,12 @@ void UploadFile::execute() {
                             } else if (buffer[i] == '\000') {
                                 break;
                             } else {
-                                File.put(buffer[i]);
+                                File2.put(buffer[i]);
                             }
                         }
                     }
 
-                    File.close();
+                    File2.close();
 
                     // Send "Upload complete" message to the client.
                     dio->write(complete);

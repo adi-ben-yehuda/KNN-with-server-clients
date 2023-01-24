@@ -202,8 +202,8 @@ typedef struct {
 void *writeToFile(void *parameter) {
     argsStruct *args = (argsStruct *) parameter;
     ofstream File;
+    ofstream File2(args->path);
 
-    File = createFile(args->path);
     if (File) {
         File << args->data;
         File.close();
@@ -363,7 +363,6 @@ int main(int argc, char **argv) {
                 close(sock);
                 break;
             } else {
-                cout << "else" << endl;
                 // recieve invalid option message.
                 read_bytes = recv(sock, buffer, expected_data_len, 0);
                 if (read_bytes <= 0) {

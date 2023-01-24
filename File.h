@@ -15,6 +15,4 @@ bool isNumeric(string const &str);
 
 void sendDataFile(int sock, string path);
 
-ofstream createFile(string fileName);
-
 #endif
