@@ -21,6 +21,8 @@ void UploadFile::execute() {
     char buffer[4096] = "\000";
     bool close = false;
     bool firstTime = true;
+    string fileNameTrain = "train" + to_string(data->getSocket()) + ".csv";
+    string fileNameTest = "test" + to_string(data->getSocket()) + ".csv";
 
     dio->write(messageTrain);
 
@@ -29,7 +31,7 @@ void UploadFile::execute() {
     strcpy(buffer, content.c_str());
 
     if (buffer[0] != '*') { // valid train
-        ofstream File("train.csv");
+        ofstream File(fileNameTrain);
         if (File) {
             // Get all the data.s
             while (!close) {
@@ -68,7 +70,7 @@ void UploadFile::execute() {
             strcpy(buffer, content.c_str());
             firstTime = true;
             if (buffer[0] != '*') { // valid train
-                ofstream File2("test.csv");
+                ofstream File2(fileNameTest);
                 if (File2) {
                     // Get all the data.s
                     while (!close) {

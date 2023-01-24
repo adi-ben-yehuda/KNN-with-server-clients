@@ -70,10 +70,12 @@ void Classify::execute() {
     double num = 0.0, numCheck = 0.0;
     int line = 0;
     ifstream testFile;
+    string fileNameTest = "test" + to_string(data->getSocket()) + ".csv";
+    string fileNameTrain = "train" + to_string(data->getSocket()) + ".csv";
 
     if (data->getIsUpload()) {
         data->removeClassifications();
-        testFile.open("test.csv");
+        testFile.open(fileNameTest);
         // Read the Data from the test file as double Vector.
         while (getline(testFile, temp)) {
             line++;
@@ -96,7 +98,7 @@ void Classify::execute() {
                     break;
                 }
             }
-            heap = getKNearestElements("train.csv", vectorFromFile, data->getMetric(), data->getK());
+            heap = getKNearestElements(fileNameTrain, vectorFromFile, data->getMetric(), data->getK());
             if (!heap.getHeap().empty()) {
                 string common = getCommonType(heap);
                 data->addClassifications(pair<int, string>(line, common));

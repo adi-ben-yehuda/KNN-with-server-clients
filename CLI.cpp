@@ -11,7 +11,7 @@ CLI::CLI(int sock) {
     this->sock = sock;
     SocketIO *sio = new SocketIO(sock);
     this->dio = sio;
-    this->data = new Data();
+    this->data = new Data(sock);
 
     options[0] = new UploadFile(data, sio);
     options[1] = new Setting(data, sio);

@@ -152,7 +152,7 @@ void option2(int sock) {
 }
 
 void option3(int sock) {
-    char buffer[4096] = " ";
+    char buffer[30] = "\000";
     int expected_data_len = sizeof(buffer);
 
     // Receive message from the server: complete or upload data.
@@ -163,6 +163,18 @@ void option3(int sock) {
         cout << "Acceptance failed" << endl;
     } else {
         cout << buffer;
+    }
+
+    char buffer2[4096] = "\000";
+    expected_data_len = sizeof(buffer2);
+    // Receive message from the server: complete or upload data.
+    read_bytes = recv(sock, buffer2, expected_data_len, 0);
+    if (read_bytes == 0) { //  connection is closed
+        close(sock);
+    } else if (read_bytes < 0) {
+        cout << "Acceptance failed" << endl;
+    } else {
+        cout << buffer2;
     }
 }
 
