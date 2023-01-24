@@ -22,36 +22,37 @@ void UploadFile::execute() {
             messageTest = "Please upload your local test CSV file.\n", complete = "Upload complete.\n", content = "";
     char buffer[4096] = " ";
     bool close = false;
+    bool firstTime = true;
 
     dio->write(messageTrain);
 
-    bool firstTime = true;
     content = dio->read();
     // copying the contents of the string to char array
     strcpy(buffer, content.c_str());
 
     if (buffer[0] != '*') { // valid train
         File = createFile("train.csv");
-        // Get all the data.s
-        while (!close) {
-            if (!firstTime) {
-                content = dio->read();
-                // copying the contents of the string to char array
-                strcpy(buffer, content.c_str());
-            }
-            firstTime = false;
-            for (int i = 0; i < 4096; ++i) {
-                if (buffer[i] != '&') {
-                    File.put(buffer[i]);
-                } else {
-                    close = true;
-                    break;
+        if(File) {
+            // Get all the data.s
+            while (!close) {
+                if (!firstTime) {
+                    content = dio->read();
+                    // copying the contents of the string to char array
+                    strcpy(buffer, content.c_str());
+                }
+                firstTime = false;
+                for (int i = 0; i < 4096; ++i) {
+                    if (buffer[i] != '&') {
+                        File.put(buffer[i]);
+                    } else {
+                        close = true;
+                        break;
+                    }
                 }
             }
+
+            File.close();
         }
-
-        File.close();
-
         // Send "Upload complete" message to the client.
         dio->write(complete);
 
