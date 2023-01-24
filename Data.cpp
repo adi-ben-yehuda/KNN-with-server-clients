@@ -1,12 +1,13 @@
 #include "Data.h"
 
-Data::Data() {
+Data::Data(int socket) {
     this->k = 5;
     this->metric = "AUC";
     this->isTest = false;
     this->isTrain = false;
     this->isClassify = false;
     map<int, string> classifications;
+    this->socket = socket;
 }
 
 map<int, string> Data::getClassifications() {
@@ -15,6 +16,10 @@ map<int, string> Data::getClassifications() {
 
 bool Data::getIsClassify() {
     return isClassify;
+}
+
+int Data::getSocket() {
+    return socket;
 }
 
 bool Data::getIsTest() {

@@ -14,12 +14,14 @@ private:
     bool isTrain;
     bool isTest;
     bool isClassify;
-
+    int socket;
 
 public:
-    Data();
+    Data(int socket);
 
     int getK();
+
+    int getSocket();
 
     string getMetric();
 
