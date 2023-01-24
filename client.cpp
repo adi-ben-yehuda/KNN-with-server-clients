@@ -363,7 +363,6 @@ int main(int argc, char **argv) {
                 close(sock);
                 break;
             } else {
-                cout << "else" << endl;
                 // recieve invalid option message.
                 read_bytes = recv(sock, buffer, expected_data_len, 0);
                 if (read_bytes <= 0) {

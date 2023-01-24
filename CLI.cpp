@@ -28,6 +28,7 @@ void CLI::sendMenu() {
     for (int i = 0; i < 5; ++i) {
         desc += options[i]->getDescription() + "\n";
     }
+    desc += "8. exit\n";
     this->dio->write(desc);
 }
 
