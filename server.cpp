@@ -13,7 +13,7 @@
 using namespace std;
 
 /* Function that get the port as an argument.
- * Check if it is number and and if it is in the valid range.*/
+ * Check if it is number and if it is in the valid range.*/
 int getPort(char **argv) {
     int port = 0;
     /* Check if the arg is number*/

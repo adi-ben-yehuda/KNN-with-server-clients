@@ -28,7 +28,6 @@ bool isFileExist(string fileName) {
     return false;
 }
 
-
 // Send the data from the file.
 void sendDataFile(int sock, string path) {
     int sent_bytes;

@@ -42,7 +42,7 @@ void option1(int sock) {
     }
 
     // Get the path of train file from the user.
-    getline(cin,pathTrain);
+    getline(cin, pathTrain);
 
     // If the pathTrain is empty or invalid path.
     if (pathTrain == "" || !isFileExist(pathTrain)) {
@@ -75,7 +75,7 @@ void option1(int sock) {
     }
 
     // Get the path of test file from the user.
-    getline(cin,pathTest);
+    getline(cin, pathTest);
 
 
     // If the pathTest is empty or invalid path.
@@ -201,8 +201,7 @@ typedef struct {
 // Write the data to a file that exists in the path.
 void *writeToFile(void *parameter) {
     argsStruct *args = (argsStruct *) parameter;
-    ofstream File;
-    ofstream File2(args->path);
+    ofstream File(args->path);
 
     if (File) {
         File << args->data;
@@ -341,35 +340,35 @@ int main(int argc, char **argv) {
 
     /* Get numbers from the user and saves them in vectors. */
     while (true) {
-            option = cin.get();
-            cin.ignore(256, '\n');
+        option = cin.get();
+        cin.ignore(256, '\n');
 
-            // Send the data that get from the console, to the server.
-            int sent_bytes = send(sock, option.c_str(), option.length(), 0);
-            if (sent_bytes < 0) {
-                cout << "Sending failed" << endl;
-            }
-            if (option == "1") {
-                option1(sock);
-            } else if (option == "2") {
-                option2(sock);
-            } else if (option == "3") {
-                option3(sock);
-            } else if (option == "4") {
-                option4(sock);
-            } else if (option == "5") {
-                option5(sock);
-            } else if (option == "8") {
-                close(sock);
-                break;
+        // Send the data that get from the console, to the server.
+        int sent_bytes = send(sock, option.c_str(), option.length(), 0);
+        if (sent_bytes < 0) {
+            cout << "Sending failed" << endl;
+        }
+        if (option == "1") {
+            option1(sock);
+        } else if (option == "2") {
+            option2(sock);
+        } else if (option == "3") {
+            option3(sock);
+        } else if (option == "4") {
+            option4(sock);
+        } else if (option == "5") {
+            option5(sock);
+        } else if (option == "8") {
+            close(sock);
+            break;
+        } else {
+            // recieve invalid option message.
+            read_bytes = recv(sock, buffer, expected_data_len, 0);
+            if (read_bytes <= 0) {
+                cout << "Acceptance failed" << endl;
             } else {
-                // recieve invalid option message.
-                read_bytes = recv(sock, buffer, expected_data_len, 0);
-                if (read_bytes <= 0) {
-                    cout << "Acceptance failed" << endl;
-                } else {
-                    cout << buffer;
-                }
+                cout << buffer;
             }
+        }
     }
 }

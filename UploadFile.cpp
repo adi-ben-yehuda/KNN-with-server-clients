@@ -1,5 +1,4 @@
 #include "UploadFile.h"
-#include <netinet/in.h>
 #include <cstring>
 #include "File.h"
 #include "Data.h"
@@ -104,7 +103,6 @@ void UploadFile::execute() {
         }
     }
 }
-
 
 /* Destructor. */
 UploadFile::~UploadFile() {
