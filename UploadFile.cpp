@@ -69,7 +69,7 @@ void UploadFile::execute() {
             strcpy(buffer, content.c_str());
             firstTime = true;
             if (buffer[0] != '*') { // valid train
-                ofstream File2("train.csv");
+                ofstream File2("test.csv");
                 if (File) {
                     // Get all the data.s
                     while (!close) {
