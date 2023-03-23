@@ -24,12 +24,17 @@ The user will be given the option to type a path of a local CSV file on his comp
 
 #### Option 2 - algorithm settings:
 The server will send the current classifier parameter values which are the K parameter value and the current distance meter. 
+
 If the user presses enter, the parameters won't be changed. The default values at the beginning of the program are k=5 and metric=AUC. Otherwise, the user can enter new values separated by a space when K can have a range
 values of whole numbers and the distance matrix can have the following values: euclidean distance- AUC, taxicab geometry- MAN, Chebyshev distance- CHB, Canberra distance- CAN, or Minkowski distance- MIN.
+
 If the user entered an invalid value - the error message will be returned: "invalid value for metric", "invalid value for K" or both.
 
 #### Option 3 - calssify data:
-The server will run the algorithm on the CSV files uploaded earlier. For each unclassified vector, the algorithm will check which of the tagged vectors in the classified file are the K vectors closest to the new vector. The distance between the new vector and each of the vectors from the classified file is calculated using the metric that the user chose in option 2. Then, the algorithm takes the K closest ("similar") vectors to the input and checks what their labeling is. The classification of the new vector is based on the most common labeling among the k vectors. 
+The server will run the algorithm on the CSV files uploaded earlier. For each unclassified vector, the algorithm will check which of the tagged vectors in the classified file are the K vectors closest to the new vector. The distance between the new vector and each of the vectors from the classified file is calculated using the metric that the user chose in option 2. 
+
+Then, the algorithm takes the K closest ("similar") vectors to the input and checks what their labeling is. The classification of the new vector is based on the most common labeling among the k vectors. 
+
 After it, the server will send "complete data classifying" to the client and the client will print it on the console.
 If no files have been uploaded yet, will be printed: "please upload data".
 
