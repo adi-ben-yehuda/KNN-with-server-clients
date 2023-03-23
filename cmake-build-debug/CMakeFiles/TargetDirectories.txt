@@ -1,3 +1,0 @@
-/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles/advanced_ex_4.dir
-/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/shahar/Documents/advencd1/advanced_ex_4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
