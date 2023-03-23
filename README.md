@@ -18,7 +18,6 @@ According to the choice of the client, the correct function executes.
 * [Contact](#Contact)
 
 ## General Information
-The server sends a menu to the client. The client prints it to the console. 
 The options in the menu are:
 #### Option 1 - upload files:
 The user will be given the option to type a path of a local CSV file on his computer. Then, the client will send the contents of the file to the server. After it, the server will send back to the client a message "upload complete." If the path is invalid, "input invalid" will be printed. This process will be repeated twice when the first file is for training the classifier and the second file is for his exam.
