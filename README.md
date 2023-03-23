@@ -1,7 +1,5 @@
 # k-nearest-neighbors (KNN) with server and clients using threads
-In this project we implemented the KNN (neighbors-nearest-K) algorithm witch is one of the most common machine learning algorithms 
-and is used in a variety of fields. In this project we create server and client (over tcp) and the Knn algorithm is implemente in the server side.
-We also use OOPs methodology, threds(in order to handle several clients in parallel).
+In this project, we implemented the KNN (neighbors-nearest-K) algorithm, which is one of the most common machine learning algorithms used in various fields. We create a server and client (over TCP) and the KNN algorithm is implemented on the server side. We also use OOPs methodology, and threads (in order to handle several clients in parallel).
 
 ## Introduction
 After connecting the client and server, the server sends a menu to the client.
