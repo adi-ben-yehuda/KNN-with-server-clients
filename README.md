@@ -2,11 +2,10 @@
 In this project, we implemented the KNN (neighbors-nearest-K) algorithm, which is one of the most common machine learning algorithms used in various fields. We create a server and client (over TCP) and the KNN algorithm is implemented on the server side. We also use OOPs methodology, and threads (in order to handle several clients in parallel).
 
 ## Introduction
-After connecting the client and server, the server sends a menu to the client.
 The options in the menu are:
 1. Upload files - upload classified and unclassified files.
 2. Algorithm settings - set k and metric distance.
-3. Calssify data - classify each vector in the unclassified file according to the classified file.
+3. Classify data - classify each vector in the unclassified file according to the classified file.
 4. Display results - display the classifications in the console.
 5. Download results - write the classifications into a file.
 8. Exit - close the connection between the client and server.
