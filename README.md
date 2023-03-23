@@ -24,7 +24,6 @@ The user will be given the option to type a path of a local CSV file on his comp
 
 #### Option 2 - algorithm settings:
 The server will send the current classifier parameter values which are the K parameter value and the current distance meter. 
-
 If the user presses enter, the parameters won't be changed. The default values at the beginning of the program are k=5 and metric=AUC. Otherwise, the user can enter new values separated by a space when K can have a range
 values of whole numbers and the distance matrix can have the following values: euclidean distance- AUC, taxicab geometry- MAN, Chebyshev distance- CHB, Canberra distance- CAN, or Minkowski distance- MIN.
 
